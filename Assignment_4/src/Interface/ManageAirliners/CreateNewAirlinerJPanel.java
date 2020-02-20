@@ -241,6 +241,9 @@ public class CreateNewAirlinerJPanel extends javax.swing.JPanel {
         jLabel7.setForeground(Color.black);
         jLabel8.setForeground(Color.black);
         jLabel9.setForeground(Color.black);
+        
+    
+        
  
      if(nameJText.getText()==null || nameJText.getText().equals("")){
             nameJText.setBorder(BorderFactory.createLineBorder(Color.RED));
@@ -249,50 +252,55 @@ public class CreateNewAirlinerJPanel extends javax.swing.JPanel {
             return;
      }
      
-     if(flightIdJText.getText()==null || flightIdJText.getText().equals("")){
-            flightIdJText.setBorder(BorderFactory.createLineBorder(Color.RED));
-            jLabel4.setForeground(Color.red);
-            JOptionPane.showMessageDialog(null, "Id cannot be empty");
-            return;
-     }
-     if(fromLocationJText.getText()==null || fromLocationJText.getText().equals("")){
-            fromLocationJText.setBorder(BorderFactory.createLineBorder(Color.RED));
-            jLabel5.setForeground(Color.red);
-            JOptionPane.showMessageDialog(null, "From Location cannot be empty");
-            return;
-     }
-     if(toLocationJText.getText()==null || toLocationJText.getText().equals("")){
-            toLocationJText.setBorder(BorderFactory.createLineBorder(Color.RED));
-            jLabel6.setForeground(Color.red);
-            JOptionPane.showMessageDialog(null, "To Location cannot be empty");
-            return;
-     }
      if(userNameJText.getText()==null || userNameJText.getText().equals("")){
             userNameJText.setBorder(BorderFactory.createLineBorder(Color.RED));
-            jLabel7.setForeground(Color.red);
+            jLabel3.setForeground(Color.red);
             JOptionPane.showMessageDialog(null, "Username cannot be empty");
             return;
      }
+     
      if(passwordJText.getText()==null || passwordJText.getText().equals("")){
             passwordJText.setBorder(BorderFactory.createLineBorder(Color.RED));
-            jLabel9.setForeground(Color.red);
+            jLabel4.setForeground(Color.red);
             JOptionPane.showMessageDialog(null, "Password cannot be empty");
             return;
      }
+     
      if(!userNamePatternCorrect()){
             userNameJText.setBorder(BorderFactory.createLineBorder(Color.RED));
-            jLabel7.setForeground(Color.red);
+            jLabel3.setForeground(Color.red);
             JOptionPane.showMessageDialog(null, "UserName Should be in the form of YYY@hgj.gfgh");
             return;
         }
        
         if(!passwordPatternCorrect()){
             passwordJText.setBorder(BorderFactory.createLineBorder(Color.RED));
-            jLabel9.setForeground(Color.red);
+            jLabel4.setForeground(Color.red);
             JOptionPane.showMessageDialog(null, "Password Should be atleast 6 digits and a combination of number, uppercaseletter, lower case letter and special character $,#,*,&");
             return;
         }
-        
+     
+     if(flightIdJText.getText()==null || flightIdJText.getText().equals("")){
+            flightIdJText.setBorder(BorderFactory.createLineBorder(Color.RED));
+            jLabel5.setForeground(Color.red);
+            JOptionPane.showMessageDialog(null, "Id cannot be empty");
+            return;
+     }
+     if(fromLocationJText.getText()==null || fromLocationJText.getText().equals("")){
+            fromLocationJText.setBorder(BorderFactory.createLineBorder(Color.RED));
+            jLabel6.setForeground(Color.red);
+            JOptionPane.showMessageDialog(null, "From Location cannot be empty");
+            return;
+     }
+     if(toLocationJText.getText()==null || toLocationJText.getText().equals("")){
+            toLocationJText.setBorder(BorderFactory.createLineBorder(Color.RED));
+            jLabel7.setForeground(Color.red);
+            JOptionPane.showMessageDialog(null, "To Location cannot be empty");
+            return;
+     }
+     
+     
+     
      for(Airliner airliner : airlineDirectory.getAirlinerList()){
          if(airliner.getAirlinerName().equalsIgnoreCase(nameJText.getText())){
              JOptionPane.showMessageDialog(null, "Airliner Already Exists.");
