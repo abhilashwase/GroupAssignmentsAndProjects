@@ -38,29 +38,9 @@ public class TravelAgencyLoginJPanel extends javax.swing.JPanel {
         this.airlineDirectory=airlineDirectory;
         this.panelRight=panelRight;
         this.userDirectory=userDirectory;
-        jLabel6.setVisible(false);
-        jLabel7.setVisible(false);
-        jLabel8.setVisible(false);
-        jLabel9.setVisible(false);
         
-        userNameJText.setVisible(false);
-        passwordJText.setVisible(false);
-        rePasswordJText.setVisible(false);
-        travelAgencyJText.setVisible(false);
-        confirmJButton.setVisible(false);
     }
-    private boolean userNamePatternCorrect(){
-    Pattern p = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
-    Matcher  m =p.matcher(userNameJText.getText());
-    boolean b = m.matches();
-    return b;
-    }
-    private boolean passwordPatternCorrect() {
-       Pattern p = Pattern.compile("((?=.*[a-z])(?=.*\\d)(?=.*[A-Z])(?=.*[@#$%!]).{6,40})");
-       Matcher m = p.matcher(passwordJText.getText());
-       boolean b = m.matches();
-       return b;
-   }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -77,17 +57,8 @@ public class TravelAgencyLoginJPanel extends javax.swing.JPanel {
         jLabel4 = new javax.swing.JLabel();
         btnLogin = new javax.swing.JButton();
         btnRegister = new javax.swing.JButton();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        travelAgencyJText = new javax.swing.JTextField();
-        rePasswordJText = new javax.swing.JTextField();
-        passwordJText = new javax.swing.JTextField();
-        userNameJText = new javax.swing.JTextField();
         txtUsername = new javax.swing.JTextField();
         txtPassword = new javax.swing.JTextField();
-        confirmJButton = new javax.swing.JButton();
 
         jLabel5.setText("jLabel5");
 
@@ -110,27 +81,6 @@ public class TravelAgencyLoginJPanel extends javax.swing.JPanel {
         btnRegister.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnRegisterActionPerformed(evt);
-            }
-        });
-
-        jLabel6.setText("Username :");
-
-        jLabel7.setText("Password :");
-
-        jLabel8.setText("Re-enter Password :");
-
-        jLabel9.setText("Travel Agency Name :");
-
-        rePasswordJText.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rePasswordJTextActionPerformed(evt);
-            }
-        });
-
-        confirmJButton.setText("Submit");
-        confirmJButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                confirmJButtonActionPerformed(evt);
             }
         });
 
@@ -160,24 +110,8 @@ public class TravelAgencyLoginJPanel extends javax.swing.JPanel {
                         .addGap(331, 331, 331)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel4)
-                            .addComponent(jLabel1)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(247, 247, 247)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel9)
-                            .addComponent(jLabel8)
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel6))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(travelAgencyJText, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
-                            .addComponent(userNameJText)
-                            .addComponent(passwordJText)
-                            .addComponent(rePasswordJText)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(339, 339, 339)
-                        .addComponent(confirmJButton)))
-                .addContainerGap(260, Short.MAX_VALUE))
+                            .addComponent(jLabel1))))
+                .addContainerGap(342, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -199,50 +133,19 @@ public class TravelAgencyLoginJPanel extends javax.swing.JPanel {
                 .addComponent(jLabel4)
                 .addGap(18, 18, 18)
                 .addComponent(btnRegister)
-                .addGap(62, 62, 62)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(userNameJText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(12, 12, 12)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
-                    .addComponent(passwordJText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel8)
-                    .addComponent(rePasswordJText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel9)
-                    .addComponent(travelAgencyJText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(confirmJButton)
-                .addContainerGap(45, Short.MAX_VALUE))
+                .addContainerGap(286, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterActionPerformed
         // TODO add your handling code here:
-        jLabel6.setVisible(true);
-        jLabel7.setVisible(true);
-        jLabel8.setVisible(true);
-        jLabel9.setVisible(true);
-        
-        userNameJText.setVisible(true);
-        passwordJText.setVisible(true);
-        rePasswordJText.setVisible(true);
-        travelAgencyJText.setVisible(true);
-        
-        confirmJButton.setVisible(true);
-        userNameJText.setBorder(new LineBorder(new Color(128,128,128)));
-        passwordJText.setBorder(new LineBorder(new Color(128,128,128)));
-        rePasswordJText.setBorder(new LineBorder(new Color(128,128,128)));
-        travelAgencyJText.setBorder(new LineBorder(new Color(128,128,128)));
-    }//GEN-LAST:event_btnRegisterActionPerformed
 
-    private void rePasswordJTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rePasswordJTextActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_rePasswordJTextActionPerformed
+        
+        NewTravelAgentJPanel newTravelAgentJPanel = new NewTravelAgentJPanel(panelRight, airlineDirectory, customerDirectory, userDirectory);
+        CardLayout layout = (CardLayout)panelRight.getLayout();
+        panelRight.add("NewTravelAgentJPanel", newTravelAgentJPanel);
+        layout.next(panelRight);
+    }//GEN-LAST:event_btnRegisterActionPerformed
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         // TODO add your handling code here:
@@ -287,88 +190,16 @@ public class TravelAgencyLoginJPanel extends javax.swing.JPanel {
         
     }//GEN-LAST:event_btnLoginActionPerformed
 
-    private void confirmJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmJButtonActionPerformed
-        // TODO add your handling code here:
-        if(userNameJText.getText() ==  null || userNameJText.getText().equals(""))
-        {
-            userNameJText.setBorder(BorderFactory.createLineBorder(Color.RED));
-            jLabel4.setForeground(Color.RED);
-            JOptionPane.showMessageDialog(null, "Username can't be empty");
-            return;
-        }
-        if(passwordJText.getText() == null || passwordJText.getText().equals(""))
-        {
-            passwordJText.setBorder(BorderFactory.createLineBorder(Color.RED));
-            jLabel6.setForeground(Color.RED);
-            JOptionPane.showMessageDialog(null, "Password can't be empty");
-            return;
-        }
-        if(rePasswordJText.getText() == null || rePasswordJText.getText().equals(""))
-        {
-            rePasswordJText.setBorder(BorderFactory.createLineBorder(Color.RED));
-            jLabel7.setForeground(Color.RED);
-            JOptionPane.showMessageDialog(null, "Please Reenter your password");
-            return;
-        }
-        if(travelAgencyJText.getText() == null || travelAgencyJText.getText().equals(""))
-        {
-            travelAgencyJText.setBorder(BorderFactory.createLineBorder(Color.RED));
-            jLabel8.setForeground(Color.RED);
-            JOptionPane.showMessageDialog(null, "Travel Agency Name can't be empty");
-            return;
-        }
-        if(!userNamePatternCorrect()){
-            userNameJText.setBorder(BorderFactory.createLineBorder(Color.RED));
-            jLabel4.setForeground(Color.red);
-            JOptionPane.showMessageDialog(null, "UserName Should be in the form of YYY@hgj.gfgh");
-            return;
-        }
-       
-        if(!passwordPatternCorrect()){
-            passwordJText.setBorder(BorderFactory.createLineBorder(Color.RED));
-            jLabel6.setForeground(Color.red);
-            JOptionPane.showMessageDialog(null, "Password Should be atleast 6 digits and a combination of number, uppercaseletter, lower case letter and special character $,#,*,&");
-            return;
-        }
-        if(!passwordJText.getText().equals(rePasswordJText.getText())){
-            JOptionPane.showMessageDialog(null, "Passwords dont match");
-            passwordJText.setBorder(BorderFactory.createLineBorder(Color.RED));
-            jLabel6.setForeground(Color.red);
-            rePasswordJText.setBorder(BorderFactory.createLineBorder(Color.RED));
-            jLabel7.setForeground(Color.red);
-            return;
-        }
-         for(UserAccount userAccount : userDirectory.getUserAccountList()){
-         if(userAccount.getName().equalsIgnoreCase(userNameJText.getText()) && userAccount.getRole().equals("Travel Agent")){
-             JOptionPane.showMessageDialog(null, "Travel Agency Already Exists.");
-            return;
-         }
-         }
-              userDirectory.createUserAccount(userNameJText.getText(), passwordJText.getText(),travelAgencyJText.getText() , "Travel Agent");
-               JOptionPane.showMessageDialog(null, "Account Created Succesfully.");
-
-    
-    }//GEN-LAST:event_confirmJButtonActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLogin;
     private javax.swing.JButton btnRegister;
-    private javax.swing.JButton confirmJButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
-    private javax.swing.JTextField passwordJText;
-    private javax.swing.JTextField rePasswordJText;
-    private javax.swing.JTextField travelAgencyJText;
     private javax.swing.JTextField txtPassword;
     private javax.swing.JTextField txtUsername;
-    private javax.swing.JTextField userNameJText;
     // End of variables declaration//GEN-END:variables
 }
