@@ -38,10 +38,10 @@ public class TravelAgencyLoginJPanel extends javax.swing.JPanel {
         this.airlineDirectory=airlineDirectory;
         this.panelRight=panelRight;
         this.userDirectory=userDirectory;
-        jLabel4.setVisible(false);
         jLabel6.setVisible(false);
         jLabel7.setVisible(false);
         jLabel8.setVisible(false);
+        jLabel9.setVisible(false);
         
         userNameJText.setVisible(false);
         passwordJText.setVisible(false);
