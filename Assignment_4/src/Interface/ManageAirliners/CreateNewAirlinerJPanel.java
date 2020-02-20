@@ -6,6 +6,9 @@
 package Interface.ManageAirliners;
 
 import Business.Airliner;
+import Business.AirlinerDirectory;
+import Business.Airplane;
+import Business.UserDirectory;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Component;

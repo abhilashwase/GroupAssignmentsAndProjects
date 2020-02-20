@@ -5,6 +5,16 @@
  */
 package Interface.ManageTravelAgency;
 
+import Business.Airliner;
+import Business.AirlinerDirectory;
+import Business.Airplane;
+import Business.UserDirectory;
+import Interface.ManageAirliners.ViewAirlinerJPanel;
+import java.awt.CardLayout;
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+
 /**
  *
  * @author Abhilash Wase
@@ -14,10 +24,34 @@ public class ViewFlightScheduleJPanel extends javax.swing.JPanel {
     /**
      * Creates new form ViewFlightScheduleJPanel
      */
-    public ViewFlightScheduleJPanel() {
+    private JPanel panelRight;
+    private  AirlinerDirectory airlineDirectory;
+    private Airplane airplane;
+    private List<Airplane> flightFleet;
+    private Airliner airliner;
+    private UserDirectory userDirectory;
+    public ViewFlightScheduleJPanel(JPanel panelRight,AirlinerDirectory airlineDirectory, Airplane airplane, List<Airplane> flightFleet,Airliner airliner, UserDirectory userDirectory) {
         initComponents();
+        this.panelRight = panelRight;
+        this.airlineDirectory = airlineDirectory;
+        this.airplane = airplane;
+        this.flightFleet = flightFleet;
+        this.airliner =airliner;
+        this.userDirectory = userDirectory;
+        populateFlightDetails();
     }
-
+    public void populateFlightDetails(){
+        flightIdJText.setText(String.valueOf(airplane.getFlightId()));
+        fromLocationJText.setText(airplane.getFromLocation());
+        toLocationJText.setText(airplane.getToLocation());
+         String scheduledTime = airplane.getFlightSchedule();
+        String[] row = scheduledTime.split(":");
+        spinnerHour.setValue(row[0]);
+         String min = row[1];
+        spinnerMinute.setValue(min.substring(0, 2));
+        spinnerAmPm.setValue(scheduledTime.matches("PM")?"PM":"AM");
+        priceJText.setText(String.valueOf(airplane.getPrice()));
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -66,6 +100,11 @@ public class ViewFlightScheduleJPanel extends javax.swing.JPanel {
         priceJText.setText("jTextField4");
 
         backBtn.setText("Back");
+        backBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backBtnActionPerformed(evt);
+            }
+        });
 
         btnUpdate.setText("Update");
         btnUpdate.addActionListener(new java.awt.event.ActionListener() {
@@ -75,8 +114,18 @@ public class ViewFlightScheduleJPanel extends javax.swing.JPanel {
         });
 
         btnCancel.setText("Cancel");
+        btnCancel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelActionPerformed(evt);
+            }
+        });
 
         btnSave.setText("Save");
+        btnSave.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSaveActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -159,7 +208,104 @@ public class ViewFlightScheduleJPanel extends javax.swing.JPanel {
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         // TODO add your handling code here:
+        flightIdJText.setEditable(false);
+        fromLocationJText.setEditable(true);
+        toLocationJText.setEditable(true);
+        spinnerHour.setEnabled(true);
+        spinnerMinute.setEnabled(true);
+        spinnerAmPm.setEnabled(true);     
+        priceJText.setEditable(true);
+        btnCancel.setEnabled(true);
+        btnSave.setEnabled(true);
+        btnUpdate.setEnabled(false);
     }//GEN-LAST:event_btnUpdateActionPerformed
+
+    private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
+        // TODO add your handling code here:
+        flightIdJText.setEditable(false);
+        fromLocationJText.setEditable(false);
+        toLocationJText.setEditable(false);
+        spinnerHour.setEnabled(false);
+        spinnerMinute.setEnabled(false);
+        spinnerAmPm.setEnabled(false);
+        priceJText.setEditable(false);
+        btnSave.setEnabled(false);
+        btnUpdate.setEnabled(true);
+     
+     int flightId = 0;
+     try{
+     flightId = Integer.parseInt(flightIdJText.getText());
+     }
+     catch(NumberFormatException e){
+         JOptionPane.showMessageDialog(null, "Please enter number for flightId");
+         return;
+     }
+     double price = 0;
+     try{
+     price = Double.parseDouble(priceJText.getText());
+     }
+     catch(NumberFormatException e){
+         JOptionPane.showMessageDialog(null, "Please enter number for price");
+         return;
+     }
+     String scheduledTime = airplane.getFlightSchedule();
+        String[] row = scheduledTime.split(":");
+        spinnerHour.setValue(row[0]);
+         String min = row[1];
+        spinnerMinute.setValue(min.substring(0, 2));
+        spinnerAmPm.setValue(scheduledTime.matches("PM")?"PM":"AM");
+     for(Airplane airpln : flightFleet){
+         if(airpln.getFlightId()==airplane.getFlightId()){
+              airpln.setFlightId(flightId);
+              airpln.setFlightSchedule(spinnerHour.getValue()+":"+spinnerMinute.getValue()+" "+spinnerAmPm.getValue());
+              airpln.setFromLocation(fromLocationJText.getText());
+              airpln.setToLocation(toLocationJText.getText());
+              airpln.setPrice(price);
+         }
+     }
+     
+     
+     
+     
+     
+     JOptionPane.showMessageDialog(null, "Flight Updated Successfully.");
+    }//GEN-LAST:event_btnSaveActionPerformed
+
+    private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
+        // TODO add your handling code here:
+        flightIdJText.setText(String.valueOf(airplane.getFlightId()));
+        fromLocationJText.setText(airplane.getFromLocation());
+        toLocationJText.setText(airplane.getToLocation());
+        String scheduledTime = airplane.getFlightSchedule();
+        String[] row = scheduledTime.split(":");
+        spinnerHour.setValue(row[0]);
+        String min = row[1];
+        spinnerMinute.setValue(min.substring(0, 2));
+        spinnerAmPm.setValue(scheduledTime.matches("PM")?"PM":"AM");
+        priceJText.setText(String.valueOf(airplane.getPrice()));
+
+        flightIdJText.setEditable(false);
+        fromLocationJText.setEditable(false);
+        toLocationJText.setEditable(false);
+        priceJText.setEditable(false);
+        spinnerHour.setEnabled(false);
+        spinnerMinute.setEnabled(false);
+        spinnerAmPm.setEnabled(false);
+
+        btnCancel.setEnabled(false);
+        btnSave.setEnabled(false);
+        btnUpdate.setEnabled(true);
+    }//GEN-LAST:event_btnCancelActionPerformed
+
+    private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
+        // TODO add your handling code here:
+        this.panelRight.remove(this);
+        ViewAirlinerJPanel viewFlightSchedule = new ViewAirlinerJPanel(panelRight,airlineDirectory,airliner,userDirectory);
+        viewFlightSchedule.populateAirlinerDetails();
+        this.panelRight.add("ViewAirlinerJPanel", viewFlightSchedule);
+        CardLayout layout = (CardLayout)this.panelRight.getLayout();
+        layout.previous(panelRight);
+    }//GEN-LAST:event_backBtnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
