@@ -126,12 +126,6 @@ public class ManageTravelAgencyJPanel extends javax.swing.JPanel {
             }
         });
 
-        jComboBoxFromLocation.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        jComboBoxToLocation.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        jComboBoxAirlinerName.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -232,6 +226,7 @@ public class ManageTravelAgencyJPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Please Select your Destination Location");
             return;
         }
+        
         if(jComboBoxFromLocation.getSelectedItem().toString().equals(jComboBoxToLocation.getSelectedItem().toString()))
         {
             JOptionPane.showMessageDialog(null, "Both Source and Destination Locations can't be the same");
