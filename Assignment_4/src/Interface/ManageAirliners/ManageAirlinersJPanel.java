@@ -6,6 +6,8 @@
 package Interface.ManageAirliners;
 
 import Business.Airliner;
+import Business.AirlinerDirectory;
+import Business.UserDirectory;
 import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;

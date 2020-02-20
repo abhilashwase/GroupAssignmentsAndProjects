@@ -6,6 +6,12 @@
 package Interface.ManageAirliners;
 
 import Business.Airliner;
+import Business.AirlinerDirectory;
+import Business.Airplane;
+import Business.UserAccount;
+import Business.UserDirectory;
+import Interface.ManageTravelAgency.CreateNewFlightScheduleJPanel;
+import Interface.ManageTravelAgency.ViewFlightScheduleJPanel;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.util.List;

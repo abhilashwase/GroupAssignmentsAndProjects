@@ -101,17 +101,7 @@ public class MainFrame extends javax.swing.JFrame {
 
         jSplitPane1.setLeftComponent(jPanel1);
 
-        javax.swing.GroupLayout panelRightLayout = new javax.swing.GroupLayout(panelRight);
-        panelRight.setLayout(panelRightLayout);
-        panelRightLayout.setHorizontalGroup(
-            panelRightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 915, Short.MAX_VALUE)
-        );
-        panelRightLayout.setVerticalGroup(
-            panelRightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 768, Short.MAX_VALUE)
-        );
-
+        panelRight.setLayout(new java.awt.CardLayout());
         jSplitPane1.setRightComponent(panelRight);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -131,7 +121,7 @@ public class MainFrame extends javax.swing.JFrame {
     private void manageCustomerBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageCustomerBtnActionPerformed
         // TODO add your handling code here:
         CardLayout layout = (CardLayout)panelRight.getLayout();
-        ManageCustomersJPanel manageCustomers = new ManageCustomersJPanel(panelRight);
+        ManageCustomersJPanel manageCustomers = new ManageCustomersJPanel(panelRight, customerDirectory);
         panelRight.add("ManageCustomersJPanel", manageCustomers);
         layout.next(panelRight);
     }//GEN-LAST:event_manageCustomerBtnActionPerformed

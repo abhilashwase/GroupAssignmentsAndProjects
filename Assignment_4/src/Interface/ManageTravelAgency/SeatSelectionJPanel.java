@@ -5,6 +5,17 @@
  */
 package Interface.ManageTravelAgency;
 
+import Business.AirlinerDirectory;
+import Business.Airplane;
+import Business.Customer;
+import Business.CustomerDirectory;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+
 /**
  *
  * @author Abhilash Wase
@@ -14,10 +25,26 @@ public class SeatSelectionJPanel extends javax.swing.JPanel {
     /**
      * Creates new form SeatSelectionJPanel
      */
-    public SeatSelectionJPanel() {
+    private JPanel panelRight;
+    private AirlinerDirectory airlinerDirectory;
+    private Airplane airplane;
+    private List<Airplane> flightFleet;
+     private CustomerDirectory customerList;
+     private String seatNo = "";
+    public SeatSelectionJPanel(JPanel panelRight,AirlinerDirectory airlinerDirectory,Airplane airplane,List<Airplane> flightFleet,CustomerDirectory customerList) {
         initComponents();
+        this.panelRight = panelRight;
+        this.airlinerDirectory = airlinerDirectory;
+        this.airplane = airplane;
+        this.flightFleet = flightFleet;
+        this.customerList = customerList;
+        
+        
     }
-
+    public void rescheduleBooking(Customer cust){
+      
+         
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
