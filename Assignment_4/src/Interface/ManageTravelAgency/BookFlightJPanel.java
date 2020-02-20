@@ -5,6 +5,17 @@
  */
 package Interface.ManageTravelAgency;
 
+import Business.AirlinerDirectory;
+import Business.Airplane;
+import Business.CustomerDirectory;
+import java.awt.CardLayout;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author kesha
@@ -14,10 +25,35 @@ public class BookFlightJPanel extends javax.swing.JPanel {
     /**
      * Creates new form BookFlightJPanel
      */
-    public BookFlightJPanel() {
+    private JPanel panelRight;
+    private AirlinerDirectory airlinerDirectory;
+    private List<Airplane> flightFleet;
+    private CustomerDirectory customerDirectory;
+    
+    public BookFlightJPanel(JPanel panelRight, AirlinerDirectory airlinerDirectory, List<Airplane> flightFleet, CustomerDirectory customerDirectory) {
         initComponents();
+        this.panelRight = panelRight;
+        this.airlinerDirectory = airlinerDirectory;
+        this.flightFleet = flightFleet;
+        this.customerDirectory = customerDirectory;
+        populateTable();
     }
-
+ private void populateTable() {
+       Collections.sort(flightFleet, Comparator.comparingDouble(Airplane::getPrice));
+       DefaultTableModel dtm = (DefaultTableModel)flightScheduleJTabel.getModel();
+       dtm.setRowCount(0);
+       for(Airplane airplane : flightFleet)
+       {
+           Object[] row = new Object[5];
+           row[0] = airplane;
+           row[1] = airplane.getFromLocation();
+           row[2] = airplane.getFlightSchedule();
+           row[3] = airplane.getPrice();
+           dtm.addRow(row);
+       }
+    }
+ 
+        
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -27,19 +63,118 @@ public class BookFlightJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel1 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        flightScheduleJTabel = new javax.swing.JTable();
+        backBtn = new javax.swing.JButton();
+        bookFlightBtn = new javax.swing.JButton();
+
+        jLabel1.setText("Book Flight Schedule");
+
+        flightScheduleJTabel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        flightScheduleJTabel.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        flightScheduleJTabel.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Flight Id", "From Location", "To Location", "Schedule Time", "Price"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(flightScheduleJTabel);
+
+        backBtn.setText("<< Back");
+        backBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backBtnActionPerformed(evt);
+            }
+        });
+
+        bookFlightBtn.setText("Book Flight");
+        bookFlightBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bookFlightBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(150, 150, 150)
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(133, 133, 133)
+                        .addComponent(backBtn)
+                        .addGap(44, 44, 44)
+                        .addComponent(bookFlightBtn)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 68, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 626, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(25, 25, 25))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(22, 22, 22)
+                .addComponent(jLabel1)
+                .addGap(38, 38, 38)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(backBtn)
+                    .addComponent(bookFlightBtn))
+                .addContainerGap(191, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void bookFlightBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bookFlightBtnActionPerformed
+        // TODO add your handling code here:
+        int selectedRow = flightScheduleJTabel.getSelectedRow();
+        if(selectedRow>=0)
+        {
+            Airplane airplane = (Airplane)flightScheduleJTabel.getValueAt(selectedRow, 0);
+            SeatSelectionJPanel seatSelectionJPanel = new SeatSelectionJPanel(panelRight, airlinerDirectory, airplane, flightFleet, customerDirectory);
+            CardLayout layout = (CardLayout)panelRight.getLayout();
+            panelRight.add("SeatSelectionJPanel", seatSelectionJPanel);
+            layout.next(panelRight);
+        }
+        else 
+        {
+            JOptionPane.showMessageDialog(null,"Please select a row");
+        }
+    }//GEN-LAST:event_bookFlightBtnActionPerformed
+
+    private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
+        // TODO add your handling code here:
+        this.panelRight.remove(this);
+        ManageTravelAgencyJPanel manageTravel = new ManageTravelAgencyJPanel(panelRight, airlinerDirectory, customerDirectory);
+        this.panelRight.add("ManageTravelAgencyJPanel", manageTravel);
+        CardLayout layout = (CardLayout)this.panelRight.getLayout();
+        layout.previous(panelRight);
+    }//GEN-LAST:event_backBtnActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton backBtn;
+    private javax.swing.JButton bookFlightBtn;
+    private javax.swing.JTable flightScheduleJTabel;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     // End of variables declaration//GEN-END:variables
+
+   
 }

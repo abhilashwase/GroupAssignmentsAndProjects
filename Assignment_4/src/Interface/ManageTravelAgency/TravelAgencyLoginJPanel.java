@@ -11,6 +11,8 @@ import Business.UserAccount;
 import Business.UserDirectory;
 import java.awt.CardLayout;
 import java.awt.Color;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -29,7 +31,7 @@ public class TravelAgencyLoginJPanel extends javax.swing.JPanel {
     private AirlinerDirectory airlineDirectory;
     private CustomerDirectory customerDirectory;
     private UserDirectory userDirectory;
-    public TravelAgencyLoginJPanel() {
+    public TravelAgencyLoginJPanel(JPanel panelRight, AirlinerDirectory airlineDirectory, CustomerDirectory customerDirectory, UserDirectory userDirectory) {
         initComponents();
         
         this.customerDirectory = customerDirectory;
@@ -47,7 +49,18 @@ public class TravelAgencyLoginJPanel extends javax.swing.JPanel {
         travelAgencyJText.setVisible(false);
         confirmJButton.setVisible(false);
     }
-
+    private boolean userNamePatternCorrect(){
+    Pattern p = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
+    Matcher  m =p.matcher(userNameJText.getText());
+    boolean b = m.matches();
+    return b;
+    }
+    private boolean passwordPatternCorrect() {
+       Pattern p = Pattern.compile("((?=.*[a-z])(?=.*\\d)(?=.*[A-Z])(?=.*[@#$%!]).{6,40})");
+       Matcher m = p.matcher(passwordJText.getText());
+       boolean b = m.matches();
+       return b;
+   }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -210,6 +223,21 @@ public class TravelAgencyLoginJPanel extends javax.swing.JPanel {
 
     private void btnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterActionPerformed
         // TODO add your handling code here:
+        jLabel6.setVisible(true);
+        jLabel7.setVisible(true);
+        jLabel8.setVisible(true);
+        jLabel9.setVisible(true);
+        
+        userNameJText.setVisible(true);
+        passwordJText.setVisible(true);
+        rePasswordJText.setVisible(true);
+        travelAgencyJText.setVisible(true);
+        
+        confirmJButton.setVisible(true);
+        userNameJText.setBorder(new LineBorder(new Color(128,128,128)));
+        passwordJText.setBorder(new LineBorder(new Color(128,128,128)));
+        rePasswordJText.setBorder(new LineBorder(new Color(128,128,128)));
+        travelAgencyJText.setBorder(new LineBorder(new Color(128,128,128)));
     }//GEN-LAST:event_btnRegisterActionPerformed
 
     private void rePasswordJTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rePasswordJTextActionPerformed
@@ -218,12 +246,108 @@ public class TravelAgencyLoginJPanel extends javax.swing.JPanel {
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         // TODO add your handling code here:
+        txtUsername.setBorder(new LineBorder(new Color(128,128,128)));
+        txtPassword.setBorder(new LineBorder(new Color(128,128,128)));
+        if(txtUsername.getText() ==  null || txtUsername.getText().equals(""))
+        {
+            txtUsername.setBorder(BorderFactory.createLineBorder(Color.RED));
+            jLabel2.setForeground(Color.RED);
+            JOptionPane.showMessageDialog(null, "Username can't be empty");
+            return;
+        }
         
+        if(txtPassword.getText() == null || txtPassword.getText().equals(""))
+        {
+            txtPassword.setBorder(BorderFactory.createLineBorder(Color.RED));
+            jLabel3.setForeground(Color.RED);
+            JOptionPane.showMessageDialog(null, "Password can't be empty");
+            return;
+        }
+        
+        String agentName = null;
+        String userName = txtUsername.getText();
+        for (UserAccount travelAgency : userDirectory.getUserAccountList()) {
+            if(travelAgency.getUsername().equals(userName)){
+                agentName = travelAgency.getName();
+            }
+        }
+        UserAccount loginTravelAgent = userDirectory.authenticateUser(txtUsername.getText(), txtPassword.getText() ,agentName, "Travel Agent");
+        
+        if(loginTravelAgent ==  null )
+        {
+            JOptionPane.showMessageDialog(null, "The creadentials you entered are incorrect");
+        }
+        else
+        {
+        CardLayout layout = (CardLayout)panelRight.getLayout();
+        ManageTravelAgencyJPanel manageTravelAgencyJPanel = new ManageTravelAgencyJPanel(panelRight, airlineDirectory,customerDirectory);
+        panelRight.add("ManageTravelAgencyJPanel", manageTravelAgencyJPanel);
+        layout.next(panelRight); 
+        }
         
     }//GEN-LAST:event_btnLoginActionPerformed
 
     private void confirmJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmJButtonActionPerformed
         // TODO add your handling code here:
+        if(userNameJText.getText() ==  null || userNameJText.getText().equals(""))
+        {
+            userNameJText.setBorder(BorderFactory.createLineBorder(Color.RED));
+            jLabel4.setForeground(Color.RED);
+            JOptionPane.showMessageDialog(null, "Username can't be empty");
+            return;
+        }
+        if(passwordJText.getText() == null || passwordJText.getText().equals(""))
+        {
+            passwordJText.setBorder(BorderFactory.createLineBorder(Color.RED));
+            jLabel6.setForeground(Color.RED);
+            JOptionPane.showMessageDialog(null, "Password can't be empty");
+            return;
+        }
+        if(rePasswordJText.getText() == null || rePasswordJText.getText().equals(""))
+        {
+            rePasswordJText.setBorder(BorderFactory.createLineBorder(Color.RED));
+            jLabel7.setForeground(Color.RED);
+            JOptionPane.showMessageDialog(null, "Please Reenter your password");
+            return;
+        }
+        if(travelAgencyJText.getText() == null || travelAgencyJText.getText().equals(""))
+        {
+            travelAgencyJText.setBorder(BorderFactory.createLineBorder(Color.RED));
+            jLabel8.setForeground(Color.RED);
+            JOptionPane.showMessageDialog(null, "Travel Agency Name can't be empty");
+            return;
+        }
+        if(!userNamePatternCorrect()){
+            userNameJText.setBorder(BorderFactory.createLineBorder(Color.RED));
+            jLabel4.setForeground(Color.red);
+            JOptionPane.showMessageDialog(null, "UserName Should be in the form of YYY@hgj.gfgh");
+            return;
+        }
+       
+        if(!passwordPatternCorrect()){
+            passwordJText.setBorder(BorderFactory.createLineBorder(Color.RED));
+            jLabel6.setForeground(Color.red);
+            JOptionPane.showMessageDialog(null, "Password Should be atleast 6 digits and a combination of number, uppercaseletter, lower case letter and special character $,#,*,&");
+            return;
+        }
+        if(!passwordJText.getText().equals(rePasswordJText.getText())){
+            JOptionPane.showMessageDialog(null, "Passwords dont match");
+            passwordJText.setBorder(BorderFactory.createLineBorder(Color.RED));
+            jLabel6.setForeground(Color.red);
+            rePasswordJText.setBorder(BorderFactory.createLineBorder(Color.RED));
+            jLabel7.setForeground(Color.red);
+            return;
+        }
+         for(UserAccount userAccount : userDirectory.getUserAccountList()){
+         if(userAccount.getName().equalsIgnoreCase(userNameJText.getText()) && userAccount.getRole().equals("Travel Agent")){
+             JOptionPane.showMessageDialog(null, "Travel Agency Already Exists.");
+            return;
+         }
+         }
+              userDirectory.createUserAccount(userNameJText.getText(), passwordJText.getText(),travelAgencyJText.getText() , "Travel Agent");
+               JOptionPane.showMessageDialog(null, "Account Created Succesfully.");
+
+    
     }//GEN-LAST:event_confirmJButtonActionPerformed
 
 

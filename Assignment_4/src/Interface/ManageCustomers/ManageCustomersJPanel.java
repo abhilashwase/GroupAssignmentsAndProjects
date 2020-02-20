@@ -5,6 +5,14 @@
  */
 package Interface.ManageCustomers;
 
+import Business.Customer;
+import Business.Airplane;
+import Business.CustomerDirectory;
+import java.awt.CardLayout;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author kesha
@@ -14,10 +22,67 @@ public class ManageCustomersJPanel extends javax.swing.JPanel {
     /**
      * Creates new form ManageCustomersJPanel
      */
-    public ManageCustomersJPanel() {
+    
+    private CustomerDirectory customerList;
+    private JPanel panelRight;
+    
+    public ManageCustomersJPanel(JPanel panelRight, CustomerDirectory customerList) {
         initComponents();
+        this.customerList=customerList;
+        this.panelRight=panelRight;
     }
-
+    
+    public void populateTable()
+    {
+        DefaultTableModel dtm = (DefaultTableModel)tblSearch.getModel();
+        dtm.setRowCount(0);
+        for(Customer cust : customerList.getCustomerList())
+        {
+            Object[] row = new Object[dtm.getColumnCount()];
+            row[0] = cust;
+            row[1] = cust.getFlightId();
+            row[2] = cust.getCustomerName();
+            row[3] = cust.getBookingId();
+            row[4] = cust.getJourneyDate();
+            row[5] = cust.getSeatNo();
+            row[6] = cust.getPrice();
+            
+            dtm.addRow(row);
+        }
+            
+    }
+    
+    public void populateSearchTable()
+    {
+        DefaultTableModel dtm = (DefaultTableModel) tblSearch.getModel();
+        String customerID = txtSearch.getText();
+        dtm.setRowCount(0);
+        for(Customer cust: customerList.getCustomerList())
+        {
+            if(customerID.equals(Integer.toString(cust.getCustomerId())))
+            {
+                Object row[] = new Object[dtm.getColumnCount()];
+                row[0] = cust;
+                row[1] = cust.getFlightId();
+                row[2] = cust.getCustomerName();
+                row[3] = cust.getBookingId();
+                row[4]= cust.getJourneyDate();
+                row[5] = cust.getSeatNo();
+                row[6] = cust.getPrice();
+                row[7] = cust.getFromLocation();
+                row[8] = cust.getToLocation();
+                row[9] = cust.getScheduleTime();
+                dtm.addRow(row);
+                
+                
+            }
+        }
+        if(dtm.getRowCount()==0)
+        {
+            JOptionPane.showMessageDialog(null, "The item is not in the table");
+        }
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -28,15 +93,45 @@ public class ManageCustomersJPanel extends javax.swing.JPanel {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
+        txtSearch = new javax.swing.JTextField();
+        btnSearch = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tblSearch = new javax.swing.JTable();
+        backBtn = new javax.swing.JButton();
 
         jLabel1.setText("Manager Customer ID : ");
 
-        jButton1.setText("Search");
+        btnSearch.setText("Search");
+        btnSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSearchActionPerformed(evt);
+            }
+        });
 
-        jLabel2.setText("Test");
+        tblSearch.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Customer Id", "Flight Id", "Customer Name", "Booking Id", "Journey Date", "Seat No", "Price", "From Location", "To Location", "Scheduled Time"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(tblSearch);
+
+        backBtn.setText("<<Back");
+        backBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -48,13 +143,16 @@ public class ManageCustomersJPanel extends javax.swing.JPanel {
                         .addGap(79, 79, 79)
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton1))
+                        .addComponent(btnSearch))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(197, 197, 197)
-                        .addComponent(jLabel2)))
-                .addContainerGap(122, Short.MAX_VALUE))
+                        .addGap(282, 282, 282)
+                        .addComponent(backBtn))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(49, 49, 49)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 870, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(164, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -62,19 +160,43 @@ public class ManageCustomersJPanel extends javax.swing.JPanel {
                 .addGap(75, 75, 75)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
-                .addGap(62, 62, 62)
-                .addComponent(jLabel2)
-                .addContainerGap(263, Short.MAX_VALUE))
+                    .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnSearch))
+                .addGap(33, 33, 33)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(33, 33, 33)
+                .addComponent(backBtn)
+                .addContainerGap(44, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
+        // TODO add your handling code here:
+        String search = txtSearch.getText();
+        if(search == null || search.equals(""))
+        {
+            JOptionPane.showMessageDialog(null, "Provide an input");
+        }
+        else
+        {
+            populateSearchTable();
+        }
+    }//GEN-LAST:event_btnSearchActionPerformed
+
+    private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
+        // TODO add your handling code here:
+        CardLayout layout = (CardLayout)panelRight.getLayout();
+        panelRight.remove(this);
+        layout.previous(panelRight);
+    }//GEN-LAST:event_backBtnActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton backBtn;
+    private javax.swing.JButton btnSearch;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable tblSearch;
+    private javax.swing.JTextField txtSearch;
     // End of variables declaration//GEN-END:variables
 }
