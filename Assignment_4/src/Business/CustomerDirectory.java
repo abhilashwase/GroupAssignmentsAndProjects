@@ -29,12 +29,8 @@ public class CustomerDirectory {
         Customer cust9 = new Customer(800, 896, "Sunny", 51617, "2019-12-16", "2F", 400,"SJC","SMF","6:00 PM");
         Customer cust10 = new Customer(100, 412, "Prateek", 18192, "2019-12-13", "18E", 950,"OAK","NHS","3:00 AM");
         Customer cust11 = new Customer(110, 753, "Pranay", 02122, "2020-08-07", "16D", 680,"DAL","SFO","2:00 AM");
-        Customer cust12 = new Customer(129, 743, "James", 23242, "2020-06-13", "15A", 700,"DEN","OAK","8:00 PM");
-        Customer cust13 = new Customer(138, 896, "Claire", 52627, "2020-07-25", "25F", 1000,"SMF","SJC","9:00 AM");
-        Customer cust14 = new Customer(147, 437, "Damon", 28293, "2019-10-30", "6A", 300,"SF","NHS","6:00 AM");
-        Customer cust15 = new Customer(157, 963, "Stefan", 03132, "2019-11-21", "18F", 600,"OAK","SFO","9:00 PM");
-        Customer cust16 = new Customer(168, 145, "Nina", 33343, "2019-12-01", "16A", 800,"DEN","SJC","12:00 AM");
-        Customer cust17 = new Customer(176, 489, "Klaus", 53637, "2020-01-09", "11D", 850,"SF","NHS","4:00 PM");
+        Customer cust12 = new Customer(168, 145, "Nina", 33343, "2019-12-01", "16A", 800,"DEN","SJC","12:00 AM");
+        
         
         customerList.add(cust1);
         customerList.add(cust2);
@@ -48,11 +44,7 @@ public class CustomerDirectory {
         customerList.add(cust10);
         customerList.add(cust11);
         customerList.add(cust12);
-        customerList.add(cust13);
-        customerList.add(cust14);
-        customerList.add(cust15);
-        customerList.add(cust16);
-        customerList.add(cust17);        
+        
     }
 
     public List<Customer> getCustomerList() {

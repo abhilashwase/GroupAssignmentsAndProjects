@@ -22,7 +22,7 @@ public class UserDirectory {
         UserAccount userAccount4 = new UserAccount("southwest@gmail.com","SouthWest#123","SouthWest","Airliner");
         UserAccount userAccount5 = new UserAccount("jetblue@gmail.com","JetBlue#123","JetBlue","Airliner");
       
-        UserAccount userAccount6 = new UserAccount("neutravels@gmail.com", "NEu#123", "Rebekah","Travel Agent" );
+        UserAccount userAccount6 = new UserAccount("neutravels@gmail.com", "Neu#123", "NEU","Travel Agent" );
         
         userAccountList.add(userAccount1);
         userAccountList.add(userAccount2);
