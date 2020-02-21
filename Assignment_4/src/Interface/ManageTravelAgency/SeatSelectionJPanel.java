@@ -92,7 +92,6 @@ public class SeatSelectionJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -121,8 +120,7 @@ public class SeatSelectionJPanel extends javax.swing.JPanel {
         backBtn = new javax.swing.JButton();
         confirmButton = new javax.swing.JButton();
         jXDatePicker1 = new org.jdesktop.swingx.JXDatePicker();
-
-        jButton1.setText("Book Your Flight");
+        jLabel13 = new javax.swing.JLabel();
 
         jLabel1.setText("Flight ID :");
 
@@ -158,6 +156,12 @@ public class SeatSelectionJPanel extends javax.swing.JPanel {
 
         jLabel12.setText("Row Number :");
 
+        bookingIDJText.setEditable(false);
+
+        seatNoJText.setEditable(false);
+
+        priceJText.setEditable(false);
+
         backBtn.setText("Back");
         backBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -171,6 +175,8 @@ public class SeatSelectionJPanel extends javax.swing.JPanel {
                 confirmButtonActionPerformed(evt);
             }
         });
+
+        jLabel13.setText("Book Your Flight");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -234,8 +240,8 @@ public class SeatSelectionJPanel extends javax.swing.JPanel {
                         .addGroup(layout.createSequentialGroup()
                             .addContainerGap()
                             .addComponent(backBtn)
-                            .addGap(210, 210, 210)
-                            .addComponent(jButton1))))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel13))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel12)
                 .addGap(60, 60, 60)
@@ -247,8 +253,8 @@ public class SeatSelectionJPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(backBtn))
+                    .addComponent(backBtn)
+                    .addComponent(jLabel13))
                 .addGap(38, 38, 38)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
@@ -448,6 +454,7 @@ public class SeatSelectionJPanel extends javax.swing.JPanel {
                     }
           
     }
+                bookingIDJText.setText(String.valueOf(bookingId));
                 double price =0;
         for (Airplane airplane : flightFleet) {
             if(flightId==airplane.getFlightId()){
@@ -460,7 +467,7 @@ public class SeatSelectionJPanel extends javax.swing.JPanel {
                } 
             }
         }
-        bookingIDJText.setText(String.valueOf(bookingId));
+        
         flightIdJText.setEnabled(false);
         fromLocationJText.setEnabled(false);
         toLocationJText.setEnabled(false);
@@ -481,9 +488,18 @@ public class SeatSelectionJPanel extends javax.swing.JPanel {
 
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
         // TODO add your handling code here:
+<<<<<<< HEAD
+        
+        this.panelRight.remove(this);
+        ManageTravelAgencyJPanel manageTravel = new ManageTravelAgencyJPanel(panelRight, airlinerDirectory, customerList);
+        this.panelRight.add("ManageTravelAgencyJPanel", manageTravel);
+        CardLayout layout = (CardLayout)this.panelRight.getLayout();
+        layout.previous(panelRight);
+=======
         CardLayout layout = (CardLayout)panelRight.getLayout();
         panelRight.remove(this);
         layout.previous(panelRight); 
+>>>>>>> e830123f18738ee9d48693913d18617ba15732df
     }//GEN-LAST:event_backBtnActionPerformed
 
 
@@ -495,11 +511,11 @@ public class SeatSelectionJPanel extends javax.swing.JPanel {
     private javax.swing.JTextField customerNameJText;
     private javax.swing.JTextField flightIdJText;
     private javax.swing.JTextField fromLocationJText;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

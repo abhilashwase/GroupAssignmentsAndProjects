@@ -79,7 +79,6 @@ public class ManageTravelAgencyJPanel extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        backBtn = new javax.swing.JButton();
         goBtn = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
@@ -96,13 +95,6 @@ public class ManageTravelAgencyJPanel extends javax.swing.JPanel {
         jLabel3.setText("To Location : ");
 
         jLabel4.setText("Airliner Name :");
-
-        backBtn.setText("Back");
-        backBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                backBtnActionPerformed(evt);
-            }
-        });
 
         goBtn.setText("Search");
         goBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -129,9 +121,7 @@ public class ManageTravelAgencyJPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(backBtn)
-                        .addGap(226, 226, 226)
+                        .addGap(297, 297, 297)
                         .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(292, 292, 292)
@@ -163,13 +153,8 @@ public class ManageTravelAgencyJPanel extends javax.swing.JPanel {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(36, 36, 36)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(backBtn)))
+                .addGap(36, 36, 36)
+                .addComponent(jLabel1)
                 .addGap(52, 52, 52)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
@@ -195,13 +180,6 @@ public class ManageTravelAgencyJPanel extends javax.swing.JPanel {
                 .addContainerGap(128, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
-
-    private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
-        // TODO add your handling code here:
-        CardLayout layout = (CardLayout)panelRight.getLayout();
-        panelRight.remove(this);
-        layout.previous(panelRight);
-    }//GEN-LAST:event_backBtnActionPerformed
 
     private void goBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_goBtnActionPerformed
         // TODO add your handling code here:
@@ -250,7 +228,10 @@ public class ManageTravelAgencyJPanel extends javax.swing.JPanel {
                  JOptionPane.showMessageDialog(null, "No Flights Available");   
                }
            }
+<<<<<<< HEAD
+=======
         
+>>>>>>> e830123f18738ee9d48693913d18617ba15732df
     }//GEN-LAST:event_goBtnActionPerformed
 
     private void searchJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchJButtonActionPerformed
@@ -300,7 +281,6 @@ public class ManageTravelAgencyJPanel extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton backBtn;
     private javax.swing.JTextField bookingIdJText;
     private javax.swing.JButton goBtn;
     private javax.swing.JComboBox<String> jComboBoxAirlinerName;

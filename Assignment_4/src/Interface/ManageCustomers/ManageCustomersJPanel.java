@@ -97,7 +97,6 @@ public class ManageCustomersJPanel extends javax.swing.JPanel {
         btnSearch = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblSearch = new javax.swing.JTable();
-        backBtn = new javax.swing.JButton();
 
         jLabel1.setText("Manager Customer ID : ");
 
@@ -126,13 +125,6 @@ public class ManageCustomersJPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(tblSearch);
 
-        backBtn.setText("<<Back");
-        backBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                backBtnActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -145,7 +137,11 @@ public class ManageCustomersJPanel extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
+<<<<<<< HEAD
+                        .addComponent(btnSearch))
+=======
                         .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
+>>>>>>> e830123f18738ee9d48693913d18617ba15732df
                     .addGroup(layout.createSequentialGroup()
                         .addGap(49, 49, 49)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -163,9 +159,13 @@ public class ManageCustomersJPanel extends javax.swing.JPanel {
                     .addComponent(btnSearch))
                 .addGap(33, 33, 33)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
+<<<<<<< HEAD
+                .addContainerGap(102, Short.MAX_VALUE))
+=======
                 .addGap(18, 18, 18)
                 .addComponent(backBtn)
                 .addContainerGap(59, Short.MAX_VALUE))
+>>>>>>> e830123f18738ee9d48693913d18617ba15732df
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -182,16 +182,8 @@ public class ManageCustomersJPanel extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_btnSearchActionPerformed
 
-    private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
-        // TODO add your handling code here:
-        CardLayout layout = (CardLayout)panelRight.getLayout();
-        panelRight.remove(this);
-        layout.previous(panelRight);
-    }//GEN-LAST:event_backBtnActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton backBtn;
     private javax.swing.JButton btnSearch;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;

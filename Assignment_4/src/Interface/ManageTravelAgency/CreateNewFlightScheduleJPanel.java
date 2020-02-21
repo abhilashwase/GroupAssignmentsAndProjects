@@ -78,6 +78,11 @@ public class CreateNewFlightScheduleJPanel extends javax.swing.JPanel {
         jLabel6.setText("Price : ");
 
         backBtn.setText("Back");
+        backBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backBtnActionPerformed(evt);
+            }
+        });
 
         createBtn.setText("Create");
         createBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -228,13 +233,22 @@ public class CreateNewFlightScheduleJPanel extends javax.swing.JPanel {
                  airliner.setTotalFlightsPerDay(flightFleet.size());
                  ViewAirlinerJPanel manageFlightSchedule = new ViewAirlinerJPanel(panelRight,airlineDirectory,airliner,userDirectory);
                  this.panelRight.remove(this);
-                 this.panelRight.add("ManageAirlinerFlightScheduleJPanel", manageFlightSchedule);
+                 this.panelRight.add("ViewAirlinerJPanel", manageFlightSchedule);
                  CardLayout layout = (CardLayout)this.panelRight.getLayout();
                  layout.previous(panelRight);
                   break;
          }
      }
     }//GEN-LAST:event_createBtnActionPerformed
+
+    private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
+        // TODO add your handling code here:
+            
+        CardLayout layout = (CardLayout)panelRight.getLayout();
+        panelRight.remove(this);
+        layout.previous(panelRight); 
+
+    }//GEN-LAST:event_backBtnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
