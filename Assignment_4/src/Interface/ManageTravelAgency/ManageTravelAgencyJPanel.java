@@ -38,35 +38,31 @@ public class ManageTravelAgencyJPanel extends javax.swing.JPanel {
         populateComboBox();
     }
     
-      private void populateComboBox() {
-      //To change body of generated methods, choose Tools | Templates.
-      jComboBoxFromLocation.addItem("Please choose from Below");
-      jComboBoxToLocation.addItem("Please choose from Below");
-      jComboBoxAirlinerName.addItem("Please choose from below");
-      Set<String> fromLocationList = new HashSet<>();
-      Set<String> toLocationList = new HashSet<>();
-      Set<String> airLinerNameList = new HashSet<>();
-      
-      for(Airliner airliner : airlineDirectory.getAirlinerList())
-      {
-          for(Airplane airplane : airliner.getFlightFleet())
-          {
-              fromLocationList.add(airplane.getFromLocation());
-              toLocationList.add(airplane.getToLocation());
-              airLinerNameList.add(airplane.getAirlinerName());
-          }
+      public void populateComboBox(){
+        jComboBoxFromLocation.removeAllItems();
+        jComboBoxFromLocation.addItem("Please choose from Below");
+        jComboBoxToLocation.addItem("Please choose from Below");
+        jComboBoxAirlinerName.addItem("Please choose from Below");
+         Set<String> fromLocationList = new HashSet<>();
+          Set<String> toLocationList = new HashSet<>();
+           Set<String> airLinerNameList = new HashSet<>();
+         
+      for(Airliner  airliner : airlineDirectory.getAirlinerList()){
+        for(Airplane  airplane : airliner.getFlightFleet()){
+           fromLocationList.add(airplane.getFromLocation());
+           toLocationList.add(airplane.getToLocation());
+           airLinerNameList.add(airplane.getAirlinerName());
+            
+        }
       }
-      for(String fromLoc : fromLocationList)
-      {
-          jComboBoxFromLocation.addItem(fromLoc);
+      for(String fromLoc : fromLocationList){
+           jComboBoxFromLocation.addItem(fromLoc);
       }
-      for(String toLoca : toLocationList)
-      {
-          jComboBoxToLocation.addItem(toLoca);
+       for(String toLoca : toLocationList){
+           jComboBoxToLocation.addItem(toLoca);
       }
-      for(String airlinerName : airLinerNameList)
-      {
-          jComboBoxAirlinerName.addItem(airlinerName);
+        for(String airlinerName : airLinerNameList){
+           jComboBoxAirlinerName.addItem(airlinerName);
       }
     }
 
@@ -187,7 +183,7 @@ public class ManageTravelAgencyJPanel extends javax.swing.JPanel {
 
     private void goBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_goBtnActionPerformed
         // TODO add your handling code here:
-        String airlinerText = jComboBoxAirlinerName.getSelectedItem().toString();
+         String airlinerText = jComboBoxAirlinerName.getSelectedItem().toString();
         List<Airplane> flightFleet = new ArrayList<>();
         boolean selectedAirLine = false;
         if(airlinerText.equals("Please choose from Below")){
@@ -232,6 +228,10 @@ public class ManageTravelAgencyJPanel extends javax.swing.JPanel {
                  JOptionPane.showMessageDialog(null, "No Flights Available");   
                }
            }
+<<<<<<< HEAD
+=======
+        
+>>>>>>> e830123f18738ee9d48693913d18617ba15732df
     }//GEN-LAST:event_goBtnActionPerformed
 
     private void searchJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchJButtonActionPerformed

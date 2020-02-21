@@ -84,13 +84,14 @@ public class ViewAirlinerJPanel extends javax.swing.JPanel {
         newFlightBtn = new javax.swing.JButton();
         viewFlightBtn = new javax.swing.JButton();
 
+        jLabel1.setFont(new java.awt.Font("Arial", 1, 13)); // NOI18N
         jLabel1.setText("View Airliner");
 
         jLabel2.setText("User Name");
 
         jLabel3.setText("Password");
 
-        loginJButton.setText("Login");
+        loginJButton.setText("LOG IN");
         loginJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 loginJButtonActionPerformed(evt);
@@ -146,28 +147,25 @@ public class ViewAirlinerJPanel extends javax.swing.JPanel {
                         .addGap(408, 408, 408)
                         .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(162, 162, 162)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 655, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(348, 348, 348)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(viewFlightBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 189, Short.MAX_VALUE)
+                            .addComponent(newFlightBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(logoutBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(layout.createSequentialGroup()
                         .addGap(335, 335, 335)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
                             .addComponent(jLabel3))
                         .addGap(35, 35, 35)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(userNameJText)
-                            .addComponent(passwordJText, javax.swing.GroupLayout.DEFAULT_SIZE, 123, Short.MAX_VALUE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(437, 437, 437)
-                        .addComponent(logoutBtn))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(321, 321, 321)
-                        .addComponent(newFlightBtn)
-                        .addGap(127, 127, 127)
-                        .addComponent(viewFlightBtn))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(393, 393, 393)
-                        .addComponent(loginJButton))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(162, 162, 162)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 655, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(loginJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(userNameJText)
+                                .addComponent(passwordJText, javax.swing.GroupLayout.DEFAULT_SIZE, 123, Short.MAX_VALUE)))))
                 .addGap(153, 153, 153))
         );
         layout.setVerticalGroup(
@@ -183,17 +181,17 @@ public class ViewAirlinerJPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(passwordJText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(30, 30, 30)
+                .addGap(18, 18, 18)
                 .addComponent(loginJButton)
-                .addGap(56, 56, 56)
+                .addGap(68, 68, 68)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(80, 80, 80)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(newFlightBtn)
-                    .addComponent(viewFlightBtn))
-                .addGap(154, 154, 154)
-                .addComponent(logoutBtn)
-                .addGap(40, 40, 40))
+                .addGap(44, 44, 44)
+                .addComponent(newFlightBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(viewFlightBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(logoutBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -201,7 +199,7 @@ public class ViewAirlinerJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         CardLayout layout = (CardLayout)panelRight.getLayout();
          int selectionButton = JOptionPane.YES_NO_OPTION;
-         int selectionResult = JOptionPane.showConfirmDialog(null, "Are you sure to logout??","Warning",selectionButton);
+         int selectionResult = JOptionPane.showConfirmDialog(null, "Confirm logout?","Warning",selectionButton);
          if(selectionResult == JOptionPane.YES_OPTION){
               ManageAirlinersJPanel manageAirlinePanel = new ManageAirlinersJPanel(panelRight, airlinerDirectory,userDirectory);  
                 panelRight.add("ManageAirlinersJPanel", manageAirlinePanel);
@@ -214,13 +212,13 @@ public class ViewAirlinerJPanel extends javax.swing.JPanel {
         if(userNameJText.getText()==null || userNameJText.getText().equals("")){
             userNameJText.setBorder(BorderFactory.createLineBorder(Color.RED));
             jLabel1.setForeground(Color.red);
-            JOptionPane.showMessageDialog(null, "Username cant be empty");
+            JOptionPane.showMessageDialog(null, "Username cannot be empty");
             return;
      }
      if(passwordJText.getText()==null || passwordJText.getText().equals("")){
             passwordJText.setBorder(BorderFactory.createLineBorder(Color.RED));
             jLabel2.setForeground(Color.red);
-            JOptionPane.showMessageDialog(null, "Password cant be empty");
+            JOptionPane.showMessageDialog(null, "Password cannot be empty");
             return;
      }
      UserAccount userAccount =  userDirectory.authenticateUser(userNameJText.getText(),passwordJText.getText(),airliner.getAirlinerName(),"Airliner");

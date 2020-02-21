@@ -20,8 +20,6 @@ import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import org.jdesktop.swingx.JXDatePicker;
-
 
 /**
  *
@@ -59,9 +57,8 @@ public class SeatSelectionJPanel extends javax.swing.JPanel {
         spinnerMinute.setEnabled(false);
         spinnerAmPm.setEnabled(false);
         
-        
     }
-    public void rescheduleBooking(Customer cust){
+   public void rescheduleBooking(Customer cust){
       bookingIDJText.setText(String.valueOf(cust.getBookingId()));
       String stringDate = cust.getJourneyDate();
          try {
@@ -491,12 +488,18 @@ public class SeatSelectionJPanel extends javax.swing.JPanel {
 
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
         // TODO add your handling code here:
+<<<<<<< HEAD
         
         this.panelRight.remove(this);
         ManageTravelAgencyJPanel manageTravel = new ManageTravelAgencyJPanel(panelRight, airlinerDirectory, customerList);
         this.panelRight.add("ManageTravelAgencyJPanel", manageTravel);
         CardLayout layout = (CardLayout)this.panelRight.getLayout();
         layout.previous(panelRight);
+=======
+        CardLayout layout = (CardLayout)panelRight.getLayout();
+        panelRight.remove(this);
+        layout.previous(panelRight); 
+>>>>>>> e830123f18738ee9d48693913d18617ba15732df
     }//GEN-LAST:event_backBtnActionPerformed
 
 

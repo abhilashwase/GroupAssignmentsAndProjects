@@ -139,8 +139,6 @@ public class TravelAgencyLoginJPanel extends javax.swing.JPanel {
 
     private void btnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterActionPerformed
         // TODO add your handling code here:
-
-        
         NewTravelAgentJPanel newTravelAgentJPanel = new NewTravelAgentJPanel(panelRight, airlineDirectory, customerDirectory, userDirectory);
         CardLayout layout = (CardLayout)panelRight.getLayout();
         panelRight.add("NewTravelAgentJPanel", newTravelAgentJPanel);
