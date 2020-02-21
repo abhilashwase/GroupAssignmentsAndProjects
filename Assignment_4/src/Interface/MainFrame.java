@@ -90,13 +90,13 @@ public class MainFrame extends javax.swing.JFrame {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(265, 265, 265)
-                .addComponent(manageTravelAgencyBtn)
-                .addGap(63, 63, 63)
-                .addComponent(manageCustomerBtn)
-                .addGap(68, 68, 68)
-                .addComponent(manageAirlinerBtn)
-                .addContainerGap(297, Short.MAX_VALUE))
+                .addGap(245, 245, 245)
+                .addComponent(manageTravelAgencyBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(manageCustomerBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(manageAirlinerBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(313, Short.MAX_VALUE))
         );
 
         jSplitPane1.setLeftComponent(jPanel1);
