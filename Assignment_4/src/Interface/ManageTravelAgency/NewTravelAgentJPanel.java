@@ -175,28 +175,28 @@ public class NewTravelAgentJPanel extends javax.swing.JPanel {
         if(userNameJText.getText() ==  null || userNameJText.getText().equals(""))
         {
             userNameJText.setBorder(BorderFactory.createLineBorder(Color.RED));
-            jLabel4.setForeground(Color.RED);
+            jLabel2.setForeground(Color.RED);
             JOptionPane.showMessageDialog(null, "Username can't be empty");
             return;
         }
         if(passwordJText.getText() == null || passwordJText.getText().equals(""))
         {
             passwordJText.setBorder(BorderFactory.createLineBorder(Color.RED));
-            jLabel2.setForeground(Color.RED);
+            jLabel3.setForeground(Color.RED);
             JOptionPane.showMessageDialog(null, "Password can't be empty");
             return;
         }
         if(rePasswordJText.getText() == null || rePasswordJText.getText().equals(""))
         {
             rePasswordJText.setBorder(BorderFactory.createLineBorder(Color.RED));
-            jLabel3.setForeground(Color.RED);
+            jLabel4.setForeground(Color.RED);
             JOptionPane.showMessageDialog(null, "Please Reenter your password");
             return;
         }
         if(travelAgencyJText.getText() == null || travelAgencyJText.getText().equals(""))
         {
             travelAgencyJText.setBorder(BorderFactory.createLineBorder(Color.RED));
-            jLabel4.setForeground(Color.RED);
+            jLabel5.setForeground(Color.RED);
             JOptionPane.showMessageDialog(null, "Travel Agency Name can't be empty");
             return;
         }
@@ -229,14 +229,20 @@ public class NewTravelAgentJPanel extends javax.swing.JPanel {
         }
         userDirectory.createUserAccount(userNameJText.getText(), passwordJText.getText(),travelAgencyJText.getText() , "Travel Agent");
         JOptionPane.showMessageDialog(null, "Account Created Succesfully.");
+        
+        CardLayout layout = (CardLayout)panelRight.getLayout();
+        TravelAgencyLoginJPanel loginTravelAgencyJPanel = new TravelAgencyLoginJPanel(panelRight, airlineDirectory,customerDirectory, userDirectory);
+        panelRight.add("TravelAgencyLoginJPanel", loginTravelAgencyJPanel);
+        layout.next(panelRight);
 
     }//GEN-LAST:event_confirmJButtonActionPerformed
 
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
         // TODO add your handling code here:
         CardLayout layout = (CardLayout)panelRight.getLayout();
-        panelRight.remove(this);
-        layout.previous(panelRight); 
+        TravelAgencyLoginJPanel loginTravelAgencyJPanel = new TravelAgencyLoginJPanel(panelRight, airlineDirectory,customerDirectory, userDirectory);
+        panelRight.add("TravelAgencyLoginJPanel", loginTravelAgencyJPanel);
+        layout.next(panelRight); 
     }//GEN-LAST:event_backBtnActionPerformed
 
 
