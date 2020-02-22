@@ -64,6 +64,7 @@ public class CreateNewFlightScheduleJPanel extends javax.swing.JPanel {
         spinnerMinute = new javax.swing.JSpinner();
         spinnerAmPm = new javax.swing.JSpinner();
 
+        jLabel1.setFont(new java.awt.Font("Arial", 1, 13)); // NOI18N
         jLabel1.setText("Create New Flight Schedule");
 
         jLabel2.setText("Flight ID : ");
@@ -77,6 +78,11 @@ public class CreateNewFlightScheduleJPanel extends javax.swing.JPanel {
         jLabel6.setText("Price : ");
 
         backBtn.setText("Back");
+        backBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backBtnActionPerformed(evt);
+            }
+        });
 
         createBtn.setText("Create");
         createBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -84,6 +90,12 @@ public class CreateNewFlightScheduleJPanel extends javax.swing.JPanel {
                 createBtnActionPerformed(evt);
             }
         });
+
+        spinnerHour.setModel(new javax.swing.SpinnerListModel(new String[] {"12", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11"}));
+
+        spinnerMinute.setModel(new javax.swing.SpinnerListModel(new String[] {"00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59"}));
+
+        spinnerAmPm.setModel(new javax.swing.SpinnerListModel(new String[] {"AM", "PM"}));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -112,19 +124,17 @@ public class CreateNewFlightScheduleJPanel extends javax.swing.JPanel {
                                 .addComponent(spinnerMinute, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(spinnerAmPm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(flightIdJText)
+                            .addComponent(flightIdJText, javax.swing.GroupLayout.DEFAULT_SIZE, 169, Short.MAX_VALUE)
                             .addComponent(fromLocationJText)
                             .addComponent(toLocationJText)
-                            .addComponent(priceJText, javax.swing.GroupLayout.DEFAULT_SIZE, 169, Short.MAX_VALUE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(153, 153, 153)
-                        .addComponent(createBtn)))
-                .addContainerGap(326, Short.MAX_VALUE))
+                            .addComponent(priceJText)
+                            .addComponent(createBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addContainerGap(309, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(backBtn))
@@ -150,9 +160,9 @@ public class CreateNewFlightScheduleJPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(priceJText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(32, 32, 32)
-                .addComponent(createBtn)
-                .addContainerGap(277, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(createBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(271, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -223,13 +233,22 @@ public class CreateNewFlightScheduleJPanel extends javax.swing.JPanel {
                  airliner.setTotalFlightsPerDay(flightFleet.size());
                  ViewAirlinerJPanel manageFlightSchedule = new ViewAirlinerJPanel(panelRight,airlineDirectory,airliner,userDirectory);
                  this.panelRight.remove(this);
-                 this.panelRight.add("ManageAirlinerFlightScheduleJPanel", manageFlightSchedule);
+                 this.panelRight.add("ViewAirlinerJPanel", manageFlightSchedule);
                  CardLayout layout = (CardLayout)this.panelRight.getLayout();
                  layout.previous(panelRight);
                   break;
          }
      }
     }//GEN-LAST:event_createBtnActionPerformed
+
+    private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
+        // TODO add your handling code here:
+            
+        CardLayout layout = (CardLayout)panelRight.getLayout();
+        panelRight.remove(this);
+        layout.previous(panelRight); 
+
+    }//GEN-LAST:event_backBtnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

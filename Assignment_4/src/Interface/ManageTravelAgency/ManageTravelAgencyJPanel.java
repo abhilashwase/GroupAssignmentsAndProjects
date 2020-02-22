@@ -38,35 +38,31 @@ public class ManageTravelAgencyJPanel extends javax.swing.JPanel {
         populateComboBox();
     }
     
-      private void populateComboBox() {
-      //To change body of generated methods, choose Tools | Templates.
-      jComboBoxFromLocation.addItem("Please choose from Below");
-      jComboBoxToLocation.addItem("Please choose from Below");
-      jComboBoxAirlinerName.addItem("Please choose from below");
-      Set<String> fromLocationList = new HashSet<>();
-      Set<String> toLocationList = new HashSet<>();
-      Set<String> airLinerNameList = new HashSet<>();
-      
-      for(Airliner airliner : airlineDirectory.getAirlinerList())
-      {
-          for(Airplane airplane : airliner.getFlightFleet())
-          {
-              fromLocationList.add(airplane.getFromLocation());
-              toLocationList.add(airplane.getToLocation());
-              airLinerNameList.add(airplane.getAirlinerName());
-          }
+      public void populateComboBox(){
+        jComboBoxFromLocation.removeAllItems();
+        jComboBoxFromLocation.addItem("Please choose from Below");
+        jComboBoxToLocation.addItem("Please choose from Below");
+        jComboBoxAirlinerName.addItem("Please choose from Below");
+         Set<String> fromLocationList = new HashSet<>();
+          Set<String> toLocationList = new HashSet<>();
+           Set<String> airLinerNameList = new HashSet<>();
+         
+      for(Airliner  airliner : airlineDirectory.getAirlinerList()){
+        for(Airplane  airplane : airliner.getFlightFleet()){
+           fromLocationList.add(airplane.getFromLocation());
+           toLocationList.add(airplane.getToLocation());
+           airLinerNameList.add(airplane.getAirlinerName());
+            
+        }
       }
-      for(String fromLoc : fromLocationList)
-      {
-          jComboBoxFromLocation.addItem(fromLoc);
+      for(String fromLoc : fromLocationList){
+           jComboBoxFromLocation.addItem(fromLoc);
       }
-      for(String toLoca : toLocationList)
-      {
-          jComboBoxToLocation.addItem(toLoca);
+       for(String toLoca : toLocationList){
+           jComboBoxToLocation.addItem(toLoca);
       }
-      for(String airlinerName : airLinerNameList)
-      {
-          jComboBoxAirlinerName.addItem(airlinerName);
+        for(String airlinerName : airLinerNameList){
+           jComboBoxAirlinerName.addItem(airlinerName);
       }
     }
 
@@ -83,7 +79,6 @@ public class ManageTravelAgencyJPanel extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        backBtn = new javax.swing.JButton();
         goBtn = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
@@ -100,13 +95,6 @@ public class ManageTravelAgencyJPanel extends javax.swing.JPanel {
         jLabel3.setText("To Location : ");
 
         jLabel4.setText("Airliner Name :");
-
-        backBtn.setText("Back");
-        backBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                backBtnActionPerformed(evt);
-            }
-        });
 
         goBtn.setText("Search");
         goBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -126,12 +114,6 @@ public class ManageTravelAgencyJPanel extends javax.swing.JPanel {
             }
         });
 
-        jComboBoxFromLocation.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        jComboBoxToLocation.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        jComboBoxAirlinerName.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -139,9 +121,7 @@ public class ManageTravelAgencyJPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(backBtn)
-                        .addGap(226, 226, 226)
+                        .addGap(297, 297, 297)
                         .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(292, 292, 292)
@@ -173,13 +153,8 @@ public class ManageTravelAgencyJPanel extends javax.swing.JPanel {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(36, 36, 36)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(backBtn)))
+                .addGap(36, 36, 36)
+                .addComponent(jLabel1)
                 .addGap(52, 52, 52)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
@@ -206,128 +181,106 @@ public class ManageTravelAgencyJPanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
-        // TODO add your handling code here:
-        CardLayout layout = (CardLayout)panelRight.getLayout();
-        panelRight.remove(this);
-        layout.previous(panelRight);
-    }//GEN-LAST:event_backBtnActionPerformed
-
     private void goBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_goBtnActionPerformed
         // TODO add your handling code here:
-        String airlinerText = jComboBoxAirlinerName.getSelectedItem().toString();
+         String airlinerText = jComboBoxAirlinerName.getSelectedItem().toString();
         List<Airplane> flightFleet = new ArrayList<>();
-        boolean selectedAirline = false;
-        if(airlinerText.equals("Please choose from Below"))
-        {
-            selectedAirline = true;
+        boolean selectedAirLine = false;
+        if(airlinerText.equals("Please choose from Below")){
+            selectedAirLine = true;
         }
-        if(jComboBoxFromLocation.getSelectedIndex()==0)
-        {
-            JOptionPane.showMessageDialog(null, "Please Select your source Location");
+       
+        if(jComboBoxFromLocation.getSelectedIndex()==0){
+            JOptionPane.showMessageDialog(null, "Please Select your Source Location");
             return;
-        }
-        if(jComboBoxToLocation.getSelectedIndex()==0)
-        {
-            JOptionPane.showMessageDialog(null, "Please Select your Destination Location");
-            return;
-        }
-        if(jComboBoxFromLocation.getSelectedItem().toString().equals(jComboBoxToLocation.getSelectedItem().toString()))
-        {
-            JOptionPane.showMessageDialog(null, "Both Source and Destination Locations can't be the same");
-            return;
-        }
-        else
-        {
-            for(Airliner airliner : airlineDirectory.getAirlinerList())
-            {
-                for(Airplane airPlane : airliner.getFlightFleet())
-                {
-                    if(jComboBoxFromLocation.getSelectedItem().toString().equalsIgnoreCase(airPlane.getFromLocation())&& jComboBoxToLocation.getSelectedItem().toString().equalsIgnoreCase(airPlane.getToLocation()))
-                    {
-                        if(selectedAirline == false)
-                        {
-                            if(airlinerText.equalsIgnoreCase(airPlane.getAirlinerName()))
-                            {
-                                flightFleet.add(airPlane);
-                            }
-                        }
-                    }
-                }
-                if(!flightFleet.isEmpty())
-                {
-                    BookFlightJPanel bookFlightJPanel = new BookFlightJPanel(panelRight, airlineDirectory, flightFleet, customerDirectory);
-                    CardLayout layout = (CardLayout)panelRight.getLayout();
-                    panelRight.add("BookFlightJPanel", bookFlightJPanel);
-                    layout.next(panelRight);
-                }
-                else
-                {
-                    JOptionPane.showMessageDialog(null, "No Flights Available");
-                }
-            }
         }
         
+        if(jComboBoxToLocation.getSelectedIndex()==0){
+            JOptionPane.showMessageDialog(null, "Please Select your Destination Location"); 
+            return;
+        }
         
+        if(jComboBoxFromLocation.getSelectedItem().toString().equals(jComboBoxToLocation.getSelectedItem().toString())){
+            JOptionPane.showMessageDialog(null, "Both Source and Destination Locations can't be same");
+            return;
+        }
+        else{
+           for(Airliner airliner : airlineDirectory.getAirlinerList()){
+               for(Airplane airPlane : airliner.getFlightFleet()){
+           if(jComboBoxFromLocation.getSelectedItem().toString().equalsIgnoreCase(airPlane.getFromLocation())&& jComboBoxToLocation.getSelectedItem().toString().equalsIgnoreCase(airPlane.getToLocation())){
+               if(selectedAirLine==false){
+                   if(airlinerText.equalsIgnoreCase(airPlane.getAirlinerName())){
+                       flightFleet.add(airPlane);
+                   }
+               }else{
+                   flightFleet.add(airPlane);
+               }
+               }
+               }
+           }
+               if(!flightFleet.isEmpty()){
+               BookFlightJPanel bookFlightJPanel = new BookFlightJPanel(panelRight,airlineDirectory,flightFleet,customerDirectory);
+               CardLayout layout = (CardLayout)panelRight.getLayout();
+               panelRight.add("BookFlightJPanel", bookFlightJPanel);
+               layout.next(panelRight);
+             } 
+               else{
+                 JOptionPane.showMessageDialog(null, "No Flights Available");   
+               }
+           }
+<<<<<<< HEAD
+=======
+        
+>>>>>>> e830123f18738ee9d48693913d18617ba15732df
     }//GEN-LAST:event_goBtnActionPerformed
 
     private void searchJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchJButtonActionPerformed
         // TODO add your handling code here:
-        if(bookingIdJText.getText().equals(null)||bookingIdJText.getText().equals(""))
-        {
-            JOptionPane.showMessageDialog(null, "Please enter your Booking ID to reschedule your flight");
+        if(bookingIdJText.getText().equals(null)||bookingIdJText.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "Please enter bookingId to reschedule your flight.");
             return;
-        }
-        int bookingId = 0;
-        int flightId = 0;
-        String scheduleDate = "";
-        
-        try
-        {
-            bookingId = Integer.parseInt(bookingIdJText.getText());
-        }
-        catch(NumberFormatException e)
-        {
-            JOptionPane.showMessageDialog(null, "Please enter Valid Booking ID");
-            return;
-        }
-        Customer cust = null;
-        for(Customer customer : customerDirectory.getCustomerList())
-        {
-            if(bookingId == customer.getBookingId())
-            {
+         }
+         int bookingId = 0;
+         int flightId = 0;
+         String scheduleDate = "";
+                 
+         try{
+           bookingId = Integer.parseInt(bookingIdJText.getText());
+         }
+         catch(NumberFormatException e){
+            JOptionPane.showMessageDialog(null, "Please enter Valid Booking Id.");
+            return; 
+         }
+        Customer cust = null ;
+         for (Customer customer : customerDirectory.getCustomerList()) {
+            if(bookingId==customer.getBookingId()){
                 cust = customer;
                 flightId = customer.getFlightId();
                 break;
             }
-        }
-        if(flightId==0)
-        {
-            JOptionPane.showMessageDialog(null,"The Booking ID that you have entered is incorrect. Please enter a valid Booking ID");
+         }
+         if(flightId==0){
+            JOptionPane.showMessageDialog(null, "BookingId you have entered is not available. Please enter valid bookingId.");
             return;
-        }
-        else {
-            for(Airliner airliner : airlineDirectory.getAirlinerList())
-            {
-                for(Airplane airplane : airliner.getFlightFleet())
-                {
-                    if(flightId == airplane.getFlightId())
-                    {
-                        SeatSelectionJPanel seatSelectionJPanel = new SeatSelectionJPanel(panelRight, airlineDirectory, airplane, airliner.getFlightFleet(), customerDirectory);
-                        seatSelectionJPanel.rescheduleBooking(cust);
-                        CardLayout cardLayout = (CardLayout)this.panelRight.getLayout();
-                        panelRight.add("SeatSelectionJPanel", seatSelectionJPanel);
-                        cardLayout.next(panelRight);
-                        break;
-                    }
-                }
-            }
-        }
+         }
+         else{
+          for (Airliner airliner : airlineDirectory.getAirlinerList()) {
+             for (Airplane airplane : airliner.getFlightFleet()) {
+                 if(flightId ==airplane.getFlightId()){
+                     SeatSelectionJPanel seatSelectionJPanel = new SeatSelectionJPanel(panelRight,airlineDirectory,airplane,airliner.getFlightFleet(),customerDirectory);
+                     seatSelectionJPanel.rescheduleBooking(cust);
+                     CardLayout cardLayout = (CardLayout)this.panelRight.getLayout();
+                     panelRight.add("SeatSelectionJPanel", seatSelectionJPanel);
+                     cardLayout.next(panelRight);
+                     break;
+                 }
+             }
+          }
+         }
     }//GEN-LAST:event_searchJButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton backBtn;
     private javax.swing.JTextField bookingIdJText;
     private javax.swing.JButton goBtn;
     private javax.swing.JComboBox<String> jComboBoxAirlinerName;
