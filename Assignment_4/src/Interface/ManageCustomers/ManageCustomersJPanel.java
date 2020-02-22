@@ -178,7 +178,7 @@ public class ManageCustomersJPanel extends javax.swing.JPanel {
         }
         else
         {
-            populateSearchTable();
+           populateSearchTable();
         }
     }//GEN-LAST:event_btnSearchActionPerformed
 
