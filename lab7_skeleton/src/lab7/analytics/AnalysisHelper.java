@@ -83,7 +83,7 @@ public class AnalysisHelper {
             }
         }
         double avg = sum/commentList.size();
-        System.out.println("Average Number of Likes Per Comment : "+avg);
+        System.out.println("Average Number of Likes Per Comment are: "+avg);
     }
     
     public void getPostWithMostLikedComments(){
@@ -121,7 +121,7 @@ public class AnalysisHelper {
                 maxId = id;
     }
 }
-        System.out.println("Post with most comments :"+maxId);
+        System.out.println("Post with most comments are:"+maxId);
     }
     
     public void inactiveUsersBasedOnTotalPostsNumber() {
