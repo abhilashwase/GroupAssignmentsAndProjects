@@ -54,7 +54,7 @@ public class AnalysisHelper {
                 id = comment.getId();
             }
         }
-        System.out.println("\nPost with the most liked Comments is :"+postId+"\n"+comments.get(id));
+        System.out.println("\nPost with the most liked Comments is:"+postId+"\n"+comments.get(id));
     }
     
     public void getPostWithMoreComments(){
