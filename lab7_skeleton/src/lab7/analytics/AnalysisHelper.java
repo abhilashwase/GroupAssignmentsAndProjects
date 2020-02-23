@@ -52,7 +52,6 @@ public class AnalysisHelper {
             }
         }
         System.out.println("User with most likes: "+max+"\n"+ users.get(maxId));
-        System.out.println("*************************************");
        
     }
     
@@ -68,7 +67,7 @@ public class AnalysisHelper {
                 return c2.getLikes()-c1.getLikes();
             }
         });
-        System.out.println("5 most liked comments: ");
+        System.out.println("5 most liked comments are: ");
         for(int i=0; i<commentList.size() && i<5; i++){
             System.out.println(commentList.get(i));
         }
@@ -84,7 +83,7 @@ public class AnalysisHelper {
             }
         }
         double avg = sum/commentList.size();
-        System.out.println("Average Number of Likes Per Comment : "+avg);
+        System.out.println("Average Number of Likes Per Comment are: "+avg);
     }
     
     public void getPostWithMostLikedComments(){
@@ -122,7 +121,7 @@ public class AnalysisHelper {
                 maxId = id;
     }
 }
-        System.out.println("Post with most comments :"+maxId);
+        System.out.println("Post with most comments are:"+maxId);
     }
     
     public void inactiveUsersBasedOnTotalPostsNumber() {
