@@ -52,7 +52,6 @@ public class AnalysisHelper {
             }
         }
         System.out.println("User with most likes: "+max+"\n"+ users.get(maxId));
-        System.out.println("*************************************");
        
     }
     
