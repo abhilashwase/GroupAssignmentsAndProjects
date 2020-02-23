@@ -27,51 +27,6 @@ import lab7.entities.User;
  * @author harshalneelkamal
  */
 public class AnalysisHelper {
-    // find user with Most Likes
-    // TODO
-    public void userWithMostLikes(){
-        Map<Integer,Integer> userLikesCount = new HashMap<>();
-        Map<Integer,User> users = DataStore.getInstance().getUsers();
-        for(User user : users.values()){
-            for(Comment comment : user.getComments())
-            {
-                int likes = 0;
-                if(userLikesCount.containsKey(user.getId())){
-                    likes = userLikesCount.get(user.getId());
-                }
-                likes+=comment.getLikes();
-                userLikesCount.put(user.getId(), likes);
-            }
-        }
-        int max = 0;
-        int maxId = 0;
-        for(int id : userLikesCount.keySet()){
-            if(userLikesCount.get(id)>max){
-                max = userLikesCount.get(id);
-                maxId = id;
-            }
-        }
-        System.out.println("User with most likes: "+max+"\n"+ users.get(maxId));
-       
-    }
-    
-    // find 5 comments which have the most likes
-    // TODO
-    
-    public void getFiveMostLikedComment(){
-         Map<Integer, Comment> comments = DataStore.getInstance().getComments();
-        List<Comment> commentList = new ArrayList<>(comments.values());
-        Collections.sort(commentList, new Comparator<Comment>(){
-            @Override
-            public int compare(Comment c1, Comment c2){
-                return c2.getLikes()-c1.getLikes();
-            }
-        });
-        System.out.println("5 most liked comments are: ");
-        for(int i=0; i<commentList.size() && i<5; i++){
-            System.out.println(commentList.get(i));
-        }
-    }
     
     public void getAvgNoOfLikesPerComment(){
         Map<Integer, Comment> comments = DataStore.getInstance().getComments();
@@ -83,7 +38,7 @@ public class AnalysisHelper {
             }
         }
         double avg = sum/commentList.size();
-        System.out.println("Average Number of Likes Per Comment are: "+avg);
+        System.out.println("\nAverage Number of Likes Per Comment are: "+avg);
     }
     
     public void getPostWithMostLikedComments(){
@@ -99,7 +54,7 @@ public class AnalysisHelper {
                 id = comment.getId();
             }
         }
-        System.out.println("Post with the most liked Comments are :"+postId+"\n"+comments.get(id));
+        System.out.println("\nPost with the most liked Comments is :"+postId+"\n"+comments.get(id));
     }
     
     public void getPostWithMoreComments(){
@@ -121,7 +76,7 @@ public class AnalysisHelper {
                 maxId = id;
     }
 }
-        System.out.println("Post with most comments are:"+maxId);
+        System.out.println("\nPost with most comments is:"+maxId);
     }
     
     public void inactiveUsersBasedOnTotalPostsNumber() {
@@ -151,7 +106,7 @@ public class AnalysisHelper {
          return Integer.compare(right.getValue().size(), left.getValue().size());
         }
        });
-        System.out.println("Inactive User Based On Total Posts: ");
+        System.out.println("\nInactive User Based On Total Posts are: ");
          for(int i=list.size()-1; i>0 &&i>list.size()-6;i--){
              System.out.println(users.get(list.get(i).getKey()));
          }
@@ -165,7 +120,7 @@ public class AnalysisHelper {
                 return u1.getComments().size()-u2.getComments().size();
             }
         });
-        System.out.println("Inactive User Based On Total Comments: ");
+        System.out.println("\nInactive User Based On Total Comments are: ");
          for(int i=0; i<userList.size() && i<5 ;i++){
              System.out.println(userList.get(i));
          }
@@ -224,11 +179,11 @@ public class AnalysisHelper {
          return Integer.compare(right.getValue(), left.getValue());
         }
        });
-           System.out.println("Top 5 Inactive Users: ");
+           System.out.println("\nTop 5 Inactive Users are: ");
          for(int i=resultList.size()-1; i>resultList.size()-6 && i>0 ;i--){
              System.out.println(users.get(resultList.get(i).getKey()));
          }
-         System.out.println("Top 5 ProActive Users: ");
+         System.out.println("\nTop 5 ProActive Users are: ");
          for(int i=0; i<resultList.size() && i<5 ;i++){
              System.out.println(users.get(resultList.get(i).getKey()));
          }
