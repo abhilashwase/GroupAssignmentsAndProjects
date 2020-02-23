@@ -54,7 +54,7 @@ public class AnalysisHelper {
                 id = comment.getId();
             }
         }
-        System.out.println("\nPost with the most liked Comments is :"+postId+"\n"+comments.get(id));
+        System.out.println("\nPost with the most liked Comments is:"+postId+"\n"+comments.get(id));
     }
     
     public void getPostWithMoreComments(){
@@ -107,6 +107,7 @@ public class AnalysisHelper {
         }
        });
         System.out.println("\nInactive User Based On Total Posts are: ");
+        System.out.println("--------------------------------------");
          for(int i=list.size()-1; i>0 &&i>list.size()-6;i--){
              System.out.println(users.get(list.get(i).getKey()));
          }
@@ -121,6 +122,7 @@ public class AnalysisHelper {
             }
         });
         System.out.println("\nInactive User Based On Total Comments are: ");
+        System.out.println("-----------------------------------------");
          for(int i=0; i<userList.size() && i<5 ;i++){
              System.out.println(userList.get(i));
          }
@@ -180,10 +182,12 @@ public class AnalysisHelper {
         }
        });
            System.out.println("\nTop 5 Inactive Users are: ");
+           System.out.println("-------------------------");
          for(int i=resultList.size()-1; i>resultList.size()-6 && i>0 ;i--){
              System.out.println(users.get(resultList.get(i).getKey()));
          }
          System.out.println("\nTop 5 ProActive Users are: ");
+         System.out.println("--------------------------");
          for(int i=0; i<resultList.size() && i<5 ;i++){
              System.out.println(users.get(resultList.get(i).getKey()));
          }
