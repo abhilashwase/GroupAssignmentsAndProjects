@@ -68,7 +68,7 @@ public class AnalysisHelper {
                 return c2.getLikes()-c1.getLikes();
             }
         });
-        System.out.println("5 most liked comments: ");
+        System.out.println("5 most liked comments are: ");
         for(int i=0; i<commentList.size() && i<5; i++){
             System.out.println(commentList.get(i));
         }
