@@ -8,24 +8,23 @@ package Business;
 import java.util.List;
 import java.util.Date;
 import java.util.List;
+
 /**
  *
  * @author Abhilash Wase
  */
 public class Airliner {
-    
+
     private String airlinerName;
     private int totalFlightsPerDay;
     private List<Airplane> flightFleet;
-    
 
     public Airliner(String airlinerName, int totalFlightsPerDay, List<Airplane> flightFleet) {
         this.airlinerName = airlinerName;
         this.totalFlightsPerDay = totalFlightsPerDay;
         this.flightFleet = flightFleet;
     }
-   
-    
+
     public String getAirlinerName() {
         return airlinerName;
     }
@@ -49,10 +48,10 @@ public class Airliner {
     public void setFlightFleet(List<Airplane> flightFleet) {
         this.flightFleet = flightFleet;
     }
-    
+
     @Override
     public String toString() {
-        return  airlinerName ;
+        return airlinerName;
     }
-    
+
 }

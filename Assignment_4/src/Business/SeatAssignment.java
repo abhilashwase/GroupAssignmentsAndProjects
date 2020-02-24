@@ -10,6 +10,7 @@ package Business;
  * @author Abhilash Wase
  */
 public class SeatAssignment {
+
     private String seatNo;
     private String seatPreference;
 
@@ -18,7 +19,6 @@ public class SeatAssignment {
         this.seatPreference = seatPreference;
     }
 
-    
     public String getSeatNo() {
         return seatNo;
     }
@@ -34,5 +34,5 @@ public class SeatAssignment {
     public void setSeatPreference(String seatPreference) {
         this.seatPreference = seatPreference;
     }
-    
+
 }
