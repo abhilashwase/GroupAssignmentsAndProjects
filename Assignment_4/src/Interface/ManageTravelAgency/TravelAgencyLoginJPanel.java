@@ -31,16 +31,17 @@ public class TravelAgencyLoginJPanel extends javax.swing.JPanel {
     private AirlinerDirectory airlineDirectory;
     private CustomerDirectory customerDirectory;
     private UserDirectory userDirectory;
+
     public TravelAgencyLoginJPanel(JPanel panelRight, AirlinerDirectory airlineDirectory, CustomerDirectory customerDirectory, UserDirectory userDirectory) {
         initComponents();
-        
+
         this.customerDirectory = customerDirectory;
-        this.airlineDirectory=airlineDirectory;
-        this.panelRight=panelRight;
-        this.userDirectory=userDirectory;
-        
+        this.airlineDirectory = airlineDirectory;
+        this.panelRight = panelRight;
+        this.userDirectory = userDirectory;
+
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -62,13 +63,14 @@ public class TravelAgencyLoginJPanel extends javax.swing.JPanel {
 
         jLabel5.setText("jLabel5");
 
-        jLabel1.setText("Taavel Agent Login");
+        jLabel1.setFont(new java.awt.Font("Trebuchet MS", 1, 24)); // NOI18N
+        jLabel1.setText("Travel Agent Login");
 
         jLabel2.setText("Username :");
 
         jLabel3.setText("Password :");
 
-        jLabel4.setText("New Travel Agent");
+        jLabel4.setText("New Travel Agent ?");
 
         btnLogin.setText("Login");
         btnLogin.addActionListener(new java.awt.event.ActionListener() {
@@ -89,103 +91,93 @@ public class TravelAgencyLoginJPanel extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(259, 259, 259)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(211, 211, 211)
+                        .addGap(76, 76, 76)
+                        .addComponent(btnLogin))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(56, 56, 56)
+                        .addComponent(jLabel4))
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel3))
+                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel3)
-                                .addGap(18, 18, 18)
-                                .addComponent(txtPassword))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addGap(18, 18, 18)
-                                .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(txtPassword)
+                            .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(341, 341, 341)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnRegister)
-                            .addComponent(btnLogin)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(331, 331, 331)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel1))))
-                .addContainerGap(342, Short.MAX_VALUE))
+                        .addGap(75, 75, 75)
+                        .addComponent(btnRegister)))
+                .addContainerGap(298, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(44, 44, 44)
-                        .addComponent(jLabel2))
+                .addGap(29, 29, 29)
+                .addComponent(jLabel1)
+                .addGap(57, 57, 57)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
                     .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(10, 10, 10)
+                .addGap(38, 38, 38)
                 .addComponent(btnLogin)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel4)
                 .addGap(18, 18, 18)
                 .addComponent(btnRegister)
-                .addContainerGap(286, Short.MAX_VALUE))
+                .addContainerGap(215, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterActionPerformed
         // TODO add your handling code here:
         NewTravelAgentJPanel newTravelAgentJPanel = new NewTravelAgentJPanel(panelRight, airlineDirectory, customerDirectory, userDirectory);
-        CardLayout layout = (CardLayout)panelRight.getLayout();
+        CardLayout layout = (CardLayout) panelRight.getLayout();
         panelRight.add("NewTravelAgentJPanel", newTravelAgentJPanel);
         layout.next(panelRight);
     }//GEN-LAST:event_btnRegisterActionPerformed
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         // TODO add your handling code here:
-        txtUsername.setBorder(new LineBorder(new Color(128,128,128)));
-        txtPassword.setBorder(new LineBorder(new Color(128,128,128)));
-        if(txtUsername.getText() ==  null || txtUsername.getText().equals(""))
-        {
+        txtUsername.setBorder(new LineBorder(new Color(128, 128, 128)));
+        txtPassword.setBorder(new LineBorder(new Color(128, 128, 128)));
+        if (txtUsername.getText() == null || txtUsername.getText().equals("")) {
             txtUsername.setBorder(BorderFactory.createLineBorder(Color.RED));
-            jLabel2.setForeground(Color.RED);
             JOptionPane.showMessageDialog(null, "Username can't be empty");
             return;
         }
-        
-        if(txtPassword.getText() == null || txtPassword.getText().equals(""))
-        {
+
+        if (txtPassword.getText() == null || txtPassword.getText().equals("")) {
             txtPassword.setBorder(BorderFactory.createLineBorder(Color.RED));
-            jLabel3.setForeground(Color.RED);
             JOptionPane.showMessageDialog(null, "Password can't be empty");
             return;
         }
-        
+
         String agentName = null;
         String userName = txtUsername.getText();
         for (UserAccount travelAgency : userDirectory.getUserAccountList()) {
-            if(travelAgency.getUsername().equals(userName)){
+            if (travelAgency.getUsername().equals(userName)) {
                 agentName = travelAgency.getName();
             }
         }
-        UserAccount loginTravelAgent = userDirectory.authenticateUser(txtUsername.getText(), txtPassword.getText() ,agentName, "Travel Agent");
-        
-        if(loginTravelAgent ==  null )
-        {
+        UserAccount loginTravelAgent = userDirectory.authenticateUser(txtUsername.getText(), txtPassword.getText(), agentName, "Travel Agent");
+
+        if (loginTravelAgent == null) {
             JOptionPane.showMessageDialog(null, "The creadentials you entered are incorrect");
+        } else {
+            CardLayout layout = (CardLayout) panelRight.getLayout();
+            ManageTravelAgencyJPanel manageTravelAgencyJPanel = new ManageTravelAgencyJPanel(panelRight, airlineDirectory, customerDirectory);
+            panelRight.add("ManageTravelAgencyJPanel", manageTravelAgencyJPanel);
+            layout.next(panelRight);
         }
-        else
-        {
-        CardLayout layout = (CardLayout)panelRight.getLayout();
-        ManageTravelAgencyJPanel manageTravelAgencyJPanel = new ManageTravelAgencyJPanel(panelRight, airlineDirectory,customerDirectory);
-        panelRight.add("ManageTravelAgencyJPanel", manageTravelAgencyJPanel);
-        layout.next(panelRight); 
-        }
-        
+
     }//GEN-LAST:event_btnLoginActionPerformed
 
 
