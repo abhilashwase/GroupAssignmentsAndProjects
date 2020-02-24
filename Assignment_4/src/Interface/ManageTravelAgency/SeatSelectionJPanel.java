@@ -448,6 +448,7 @@ public class SeatSelectionJPanel extends javax.swing.JPanel {
                     }
           
     }
+                bookingIDJText.setText(String.valueOf(bookingId));
                 double price =0;
         for (Airplane airplane : flightFleet) {
             if(flightId==airplane.getFlightId()){
@@ -456,11 +457,11 @@ public class SeatSelectionJPanel extends javax.swing.JPanel {
                 priceJText.setText(String.valueOf(airplane.getPrice()));
                 price = airplane.getPrice();
                if(!this.seatNo.equals("")){
-               JOptionPane.showMessageDialog(null, "Successfully booked a Seat! "+"Have a nice Journey.");
+               JOptionPane.showMessageDialog(null, "Successfully booked a Seat! "+"\nYour Booking ID is: "+bookingId+"\nHave a nice Journey.");
                } 
             }
         }
-        bookingIDJText.setText(String.valueOf(bookingId));
+        
         flightIdJText.setEnabled(false);
         fromLocationJText.setEnabled(false);
         toLocationJText.setEnabled(false);
@@ -477,6 +478,11 @@ public class SeatSelectionJPanel extends javax.swing.JPanel {
        
         Customer customer = new Customer(customerId,flightId,customerNameJText.getText(),bookingId,szDate,this.seatNo,price,fromLocation,toLocation,spinnerHour.getValue()+":"+spinnerMinute.getValue()+" "+spinnerAmPm.getValue());
         custList.add(customer);
+        
+        CardLayout layout = (CardLayout)panelRight.getLayout();
+        ManageTravelAgencyJPanel manageTravelAgencyJPanel = new ManageTravelAgencyJPanel(panelRight, airlinerDirectory,customerList);
+        panelRight.add("ManageTravelAgencyJPanel", manageTravelAgencyJPanel);
+        layout.next(panelRight); 
     }//GEN-LAST:event_confirmButtonActionPerformed
 
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed

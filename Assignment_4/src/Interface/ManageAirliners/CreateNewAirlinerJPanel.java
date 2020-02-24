@@ -357,9 +357,14 @@ public class CreateNewAirlinerJPanel extends javax.swing.JPanel {
 
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
         // TODO add your handling code here:
+//        CardLayout layout = (CardLayout)panelRight.getLayout();
+//        panelRight.remove(this);
+//        layout.previous(panelRight); 
+        
         CardLayout layout = (CardLayout)panelRight.getLayout();
-        panelRight.remove(this);
-        layout.previous(panelRight); 
+        ManageAirlinersJPanel manageAirlinePanel = new ManageAirlinersJPanel(panelRight, airlineDirectory,userDirectory);
+        panelRight.add("ManageAirlinersJPanel", manageAirlinePanel);
+        layout.next(panelRight);
     }//GEN-LAST:event_backBtnActionPerformed
 
 
