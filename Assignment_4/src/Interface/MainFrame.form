@@ -23,7 +23,7 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="jSplitPane1" alignment="0" pref="1025" max="32767" attributes="0"/>
+          <Component id="jSplitPane1" alignment="0" pref="1019" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
@@ -50,7 +50,7 @@
                   <Group type="102" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="manageTravelAgencyBtn" pref="178" max="32767" attributes="0"/>
+                          <Component id="manageTravelAgencyBtn" max="32767" attributes="0"/>
                           <Component id="manageCustomerBtn" max="32767" attributes="0"/>
                           <Component id="manageAirlinerBtn" max="32767" attributes="0"/>
                       </Group>
@@ -61,13 +61,13 @@
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="245" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="262" max="-2" attributes="0"/>
                       <Component id="manageTravelAgencyBtn" min="-2" pref="60" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="manageCustomerBtn" min="-2" pref="55" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="manageAirlinerBtn" min="-2" pref="59" max="-2" attributes="0"/>
-                      <EmptySpace pref="313" max="32767" attributes="0"/>
+                      <EmptySpace pref="242" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -75,6 +75,9 @@
           <SubComponents>
             <Component class="javax.swing.JButton" name="manageTravelAgencyBtn">
               <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Trebuchet MS" size="14" style="1"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Manage Travel Agency"/>
               </Properties>
               <Events>
@@ -83,6 +86,9 @@
             </Component>
             <Component class="javax.swing.JButton" name="manageCustomerBtn">
               <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Trebuchet MS" size="14" style="1"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Manage Customers"/>
               </Properties>
               <Events>
@@ -91,6 +97,9 @@
             </Component>
             <Component class="javax.swing.JButton" name="manageAirlinerBtn">
               <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Tahoma" size="14" style="1"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Manage Airliners"/>
               </Properties>
               <Events>

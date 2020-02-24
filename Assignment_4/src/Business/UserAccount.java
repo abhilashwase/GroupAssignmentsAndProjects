@@ -10,20 +10,19 @@ package Business;
  * @author Abhilash Wase
  */
 public class UserAccount {
+
     private String username;
     private String password;
     private String role;
     private String name;
 
-    public UserAccount(String username, String password, String name,String role) {
+    public UserAccount(String username, String password, String name, String role) {
         this.username = username;
         this.password = password;
         this.role = role;
         this.name = name;
     }
 
-   
-    
     public String getUsername() {
         return username;
     }
@@ -43,6 +42,7 @@ public class UserAccount {
     public String getRole() {
         return role;
     }
+
     public void setRole(String role) {
         this.role = role;
     }

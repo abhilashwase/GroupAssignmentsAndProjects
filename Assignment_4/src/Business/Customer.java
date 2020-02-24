@@ -10,6 +10,7 @@ package Business;
  * @author Abhilash Wase
  */
 public class Customer {
+
     private int customerId;
     private int flightId;
     private String customerName;
@@ -21,15 +22,15 @@ public class Customer {
     private String toLocation;
     private String scheduleTime;
 
-    public Customer(int customerId, int flightId, String customerName, int bookingId, String journeyDate, String seatNo, double price,String fromLocation,String toLocation, String scheduleTime) {
-        this.customerId=customerId;
-        this.flightId=flightId;
-        this.customerName=customerName;
-        this.bookingId=bookingId;
-        this.journeyDate=journeyDate;
-        this.seatNo=seatNo;
+    public Customer(int customerId, int flightId, String customerName, int bookingId, String journeyDate, String seatNo, double price, String fromLocation, String toLocation, String scheduleTime) {
+        this.customerId = customerId;
+        this.flightId = flightId;
+        this.customerName = customerName;
+        this.bookingId = bookingId;
+        this.journeyDate = journeyDate;
+        this.seatNo = seatNo;
         this.price = price;
-        this.fromLocation =fromLocation;
+        this.fromLocation = fromLocation;
         this.toLocation = toLocation;
         this.scheduleTime = scheduleTime;
     }
@@ -113,10 +114,9 @@ public class Customer {
     public void setScheduleTime(String scheduleTime) {
         this.scheduleTime = scheduleTime;
     }
-    
-    
+
     @Override
     public String toString() {
-        return  String.valueOf(customerId) ;
+        return String.valueOf(customerId);
     }
 }

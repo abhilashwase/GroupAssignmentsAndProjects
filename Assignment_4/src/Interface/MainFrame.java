@@ -14,7 +14,6 @@ import java.awt.CardLayout;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author ajith
@@ -24,16 +23,15 @@ public class MainFrame extends javax.swing.JFrame {
     /**
      * Creates new form MainFrame
      */
-
     private AirlinerDirectory airlineDirectory;
     private CustomerDirectory customerDirectory;
     private UserDirectory userDirectory;
-    
+
     public MainFrame() {
         initComponents();
         airlineDirectory = new AirlinerDirectory();
-        customerDirectory= new CustomerDirectory();
-        userDirectory =new UserDirectory();
+        customerDirectory = new CustomerDirectory();
+        userDirectory = new UserDirectory();
     }
 
     /**
@@ -54,6 +52,7 @@ public class MainFrame extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        manageTravelAgencyBtn.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
         manageTravelAgencyBtn.setText("Manage Travel Agency");
         manageTravelAgencyBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -61,6 +60,7 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
 
+        manageCustomerBtn.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
         manageCustomerBtn.setText("Manage Customers");
         manageCustomerBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -68,6 +68,7 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
 
+        manageAirlinerBtn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         manageAirlinerBtn.setText("Manage Airliners");
         manageAirlinerBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -82,7 +83,7 @@ public class MainFrame extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(manageTravelAgencyBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE)
+                    .addComponent(manageTravelAgencyBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(manageCustomerBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(manageAirlinerBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -90,13 +91,13 @@ public class MainFrame extends javax.swing.JFrame {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(245, 245, 245)
+                .addGap(262, 262, 262)
                 .addComponent(manageTravelAgencyBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(manageCustomerBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(manageAirlinerBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(313, Short.MAX_VALUE))
+                .addContainerGap(242, Short.MAX_VALUE))
         );
 
         jSplitPane1.setLeftComponent(jPanel1);
@@ -108,7 +109,7 @@ public class MainFrame extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jSplitPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1025, Short.MAX_VALUE)
+            .addComponent(jSplitPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1019, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -120,7 +121,7 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void manageCustomerBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageCustomerBtnActionPerformed
         // TODO add your handling code here:
-        CardLayout layout = (CardLayout)panelRight.getLayout();
+        CardLayout layout = (CardLayout) panelRight.getLayout();
         ManageCustomersJPanel manageCustomers = new ManageCustomersJPanel(panelRight, customerDirectory);
         panelRight.add("ManageCustomersJPanel", manageCustomers);
         layout.next(panelRight);
@@ -128,16 +129,16 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void manageTravelAgencyBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageTravelAgencyBtnActionPerformed
         // TODO add your handling code here:
-        CardLayout layout = (CardLayout)panelRight.getLayout();
-        TravelAgencyLoginJPanel loginTravelAgencyJPanel = new TravelAgencyLoginJPanel(panelRight, airlineDirectory,customerDirectory, userDirectory);
+        CardLayout layout = (CardLayout) panelRight.getLayout();
+        TravelAgencyLoginJPanel loginTravelAgencyJPanel = new TravelAgencyLoginJPanel(panelRight, airlineDirectory, customerDirectory, userDirectory);
         panelRight.add("TravelAgencyLoginJPanel", loginTravelAgencyJPanel);
-        layout.next(panelRight); 
+        layout.next(panelRight);
     }//GEN-LAST:event_manageTravelAgencyBtnActionPerformed
 
     private void manageAirlinerBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageAirlinerBtnActionPerformed
         // TODO add your handling code here:
-        CardLayout layout = (CardLayout)panelRight.getLayout();
-        ManageAirlinersJPanel manageAirlinePanel = new ManageAirlinersJPanel(panelRight, airlineDirectory,userDirectory);
+        CardLayout layout = (CardLayout) panelRight.getLayout();
+        ManageAirlinersJPanel manageAirlinePanel = new ManageAirlinersJPanel(panelRight, airlineDirectory, userDirectory);
         panelRight.add("ManageAirlinersJPanel", manageAirlinePanel);
         layout.next(panelRight);
     }//GEN-LAST:event_manageAirlinerBtnActionPerformed

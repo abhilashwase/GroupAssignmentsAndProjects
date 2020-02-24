@@ -29,7 +29,7 @@ public class BookFlightJPanel extends javax.swing.JPanel {
     private AirlinerDirectory airlinerDirectory;
     private List<Airplane> flightFleet;
     private CustomerDirectory customerDirectory;
-    
+
     public BookFlightJPanel(JPanel panelRight, AirlinerDirectory airlinerDirectory, List<Airplane> flightFleet, CustomerDirectory customerDirectory) {
         initComponents();
         this.panelRight = panelRight;
@@ -38,23 +38,23 @@ public class BookFlightJPanel extends javax.swing.JPanel {
         this.customerDirectory = customerDirectory;
         populateTable();
     }
-    
+
     public void populateTable() {
-       Collections.sort(flightFleet, Comparator.comparingDouble(Airplane::getPrice));
-       DefaultTableModel dtm = (DefaultTableModel)flightScheduleJTabel.getModel();
-       dtm.setRowCount(0);
-       for(Airplane airplane : flightFleet)
-       {
-           Object[] row = new Object[5];
-           row[0] = airplane;
-           row[1] = airplane.getFromLocation();
-           row[2] = airplane.getFlightSchedule();
-           row[3] = airplane.getPrice();
-           dtm.addRow(row);
-       }
+        Collections.sort(flightFleet, Comparator.comparingDouble(Airplane::getPrice));
+        DefaultTableModel dtm = (DefaultTableModel) flightScheduleJTabel.getModel();
+        dtm.setRowCount(0);
+        for (Airplane airplane : flightFleet) {
+            Object[] row = new Object[5];
+            row[0] = airplane;
+            row[1] = airplane.getFromLocation();
+            row[2] = airplane.getToLocation();
+            row[3] = airplane.getFlightSchedule();
+            row[4] = airplane.getPrice();
+
+            dtm.addRow(row);
+        }
     }
- 
-        
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -70,7 +70,7 @@ public class BookFlightJPanel extends javax.swing.JPanel {
         backBtn = new javax.swing.JButton();
         bookFlightBtn = new javax.swing.JButton();
 
-        jLabel1.setFont(new java.awt.Font("Arial", 1, 13)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Trebuchet MS", 1, 24)); // NOI18N
         jLabel1.setText("Book Flight Schedule");
 
         flightScheduleJTabel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -93,7 +93,7 @@ public class BookFlightJPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(flightScheduleJTabel);
 
-        backBtn.setText("<< Back");
+        backBtn.setText("Back");
         backBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 backBtnActionPerformed(evt);
@@ -111,47 +111,50 @@ public class BookFlightJPanel extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 626, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(25, 25, 25))
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(288, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(backBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1)
-                    .addComponent(bookFlightBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(295, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(backBtn)
+                        .addGap(204, 204, 204)
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(85, 85, 85)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 657, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(339, 339, 339)
+                        .addComponent(bookFlightBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(88, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addComponent(jLabel1)
-                .addGap(38, 38, 38)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(bookFlightBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(backBtn)
-                .addContainerGap(138, Short.MAX_VALUE))
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(backBtn)
+                        .addGap(54, 54, 54))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(28, 28, 28)))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(34, 34, 34)
+                .addComponent(bookFlightBtn)
+                .addContainerGap(123, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void bookFlightBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bookFlightBtnActionPerformed
         // TODO add your handling code here:
         int selectedRow = flightScheduleJTabel.getSelectedRow();
-        if(selectedRow>=0)
-        {
-            Airplane airplane = (Airplane)flightScheduleJTabel.getValueAt(selectedRow, 0);
+        if (selectedRow >= 0) {
+            Airplane airplane = (Airplane) flightScheduleJTabel.getValueAt(selectedRow, 0);
             SeatSelectionJPanel seatSelectionJPanel = new SeatSelectionJPanel(panelRight, airlinerDirectory, airplane, flightFleet, customerDirectory);
-            CardLayout layout = (CardLayout)panelRight.getLayout();
+            CardLayout layout = (CardLayout) panelRight.getLayout();
             panelRight.add("SeatSelectionJPanel", seatSelectionJPanel);
             layout.next(panelRight);
-        }
-        else 
-        {
-            JOptionPane.showMessageDialog(null,"Please select a row");
+        } else {
+            JOptionPane.showMessageDialog(null, "Please select a row");
         }
     }//GEN-LAST:event_bookFlightBtnActionPerformed
 
@@ -160,7 +163,7 @@ public class BookFlightJPanel extends javax.swing.JPanel {
         this.panelRight.remove(this);
         ManageTravelAgencyJPanel manageTravel = new ManageTravelAgencyJPanel(panelRight, airlinerDirectory, customerDirectory);
         this.panelRight.add("ManageTravelAgencyJPanel", manageTravel);
-        CardLayout layout = (CardLayout)this.panelRight.getLayout();
+        CardLayout layout = (CardLayout) this.panelRight.getLayout();
         layout.previous(panelRight);
     }//GEN-LAST:event_backBtnActionPerformed
 
@@ -173,5 +176,4 @@ public class BookFlightJPanel extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 
-   
 }

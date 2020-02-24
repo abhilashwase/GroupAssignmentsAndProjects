@@ -34,16 +34,17 @@ public class SeatSelectionJPanel extends javax.swing.JPanel {
     private AirlinerDirectory airlinerDirectory;
     private Airplane airplane;
     private List<Airplane> flightFleet;
-     private CustomerDirectory customerList;
-     private String seatNo = "";
-    public SeatSelectionJPanel(JPanel panelRight,AirlinerDirectory airlinerDirectory,Airplane airplane,List<Airplane> flightFleet,CustomerDirectory customerList) {
+    private CustomerDirectory customerList;
+    private String seatNo = "";
+
+    public SeatSelectionJPanel(JPanel panelRight, AirlinerDirectory airlinerDirectory, Airplane airplane, List<Airplane> flightFleet, CustomerDirectory customerList) {
         initComponents();
         this.panelRight = panelRight;
         this.airlinerDirectory = airlinerDirectory;
         this.airplane = airplane;
         this.flightFleet = flightFleet;
         this.customerList = customerList;
-        
+
         flightIdJText.setText(String.valueOf(airplane.getFlightId()));
         fromLocationJText.setText(airplane.getFromLocation());
         toLocationJText.setText(airplane.getToLocation());
@@ -52,27 +53,28 @@ public class SeatSelectionJPanel extends javax.swing.JPanel {
         spinnerHour.setValue(row[0]);
         String min = row[1];
         spinnerMinute.setValue(min.substring(0, 2));
-        spinnerAmPm.setValue(scheduledTime.matches("PM")?"PM":"AM");
+        spinnerAmPm.setValue(scheduledTime.matches("PM") ? "PM" : "AM");
         spinnerHour.setEnabled(false);
         spinnerMinute.setEnabled(false);
         spinnerAmPm.setEnabled(false);
-        
+
     }
-   public void rescheduleBooking(Customer cust){
-      bookingIDJText.setText(String.valueOf(cust.getBookingId()));
-      String stringDate = cust.getJourneyDate();
-         try {
-             Date date = new SimpleDateFormat("yyyy-MM-dd").parse(stringDate);
-              jXDatePicker1.setDate(date);
-         } catch (ParseException ex) {
+
+    public void rescheduleBooking(Customer cust) {
+        bookingIDJText.setText(String.valueOf(cust.getBookingId()));
+        String stringDate = cust.getJourneyDate();
+        try {
+            Date date = new SimpleDateFormat("yyyy-MM-dd").parse(stringDate);
+            jXDatePicker1.setDate(date);
+        } catch (ParseException ex) {
             JOptionPane.showMessageDialog(null, "Invalid Date");
-         }
+        }
         String scheduledTime = airplane.getFlightSchedule();
         String[] row = scheduledTime.split(":");
         spinnerHour.setValue(row[0]);
-         String min = row[1];
+        String min = row[1];
         spinnerMinute.setValue(min.substring(0, 2));
-        spinnerAmPm.setValue(scheduledTime.matches("PM")?"PM":"AM");
+        spinnerAmPm.setValue(scheduledTime.matches("PM") ? "PM" : "AM");
         customerIdJText.setText(String.valueOf(cust.getCustomerId()));
         seatNoJText.setText(cust.getSeatNo());
         customerNameJText.setText(cust.getCustomerName());
@@ -81,8 +83,9 @@ public class SeatSelectionJPanel extends javax.swing.JPanel {
         spinnerHour.setEnabled(false);
         spinnerMinute.setEnabled(false);
         spinnerAmPm.setEnabled(false);
-         
+
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -92,7 +95,6 @@ public class SeatSelectionJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -121,8 +123,7 @@ public class SeatSelectionJPanel extends javax.swing.JPanel {
         backBtn = new javax.swing.JButton();
         confirmButton = new javax.swing.JButton();
         jXDatePicker1 = new org.jdesktop.swingx.JXDatePicker();
-
-        jButton1.setText("Book Your Flight");
+        jLabel13 = new javax.swing.JLabel();
 
         jLabel1.setText("Flight ID :");
 
@@ -146,17 +147,32 @@ public class SeatSelectionJPanel extends javax.swing.JPanel {
 
         jLabel11.setText("Price :");
 
+        flightIdJText.setEditable(false);
+
+        fromLocationJText.setEditable(false);
+
+        toLocationJText.setEditable(false);
+
         spinnerHour.setModel(new javax.swing.SpinnerListModel(new String[] {"12", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11"}));
+        spinnerHour.setEnabled(false);
 
         spinnerMinute.setModel(new javax.swing.SpinnerListModel(new String[] {"00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59"}));
+        spinnerMinute.setEnabled(false);
 
         spinnerAmPm.setModel(new javax.swing.SpinnerListModel(new String[] {"AM", "PM"}));
+        spinnerAmPm.setEnabled(false);
 
         seatPreferenceComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Window", "Middle", "Aisle" }));
 
         seatSelectionComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Row 1", "Row 2", "Row 3", "Row 4", "Row 5", "Row 6", "Row 7", "Row 8", "Row 9", "Row 10", "Row 11", "Row 12", "Row 13", "Row 14", "Row 15", "Row 16", "Row 17", "Row 18", "Row 19", "Row 20", "Row 21", "Row 22", "Row 23", "Row 24", "Row 25" }));
 
         jLabel12.setText("Row Number :");
+
+        bookingIDJText.setEditable(false);
+
+        seatNoJText.setEditable(false);
+
+        priceJText.setEditable(false);
 
         backBtn.setText("Back");
         backBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -172,84 +188,81 @@ public class SeatSelectionJPanel extends javax.swing.JPanel {
             }
         });
 
+        jLabel13.setFont(new java.awt.Font("Trebuchet MS", 1, 24)); // NOI18N
+        jLabel13.setText("Book Your Flight");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGap(233, 233, 233)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(confirmButton)
-                        .addGap(46, 46, 46))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(162, 162, 162)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel4)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel5)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(seatPreferenceComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addComponent(jLabel6)
-                                            .addGap(5, 5, Short.MAX_VALUE)
-                                            .addComponent(spinnerHour, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGap(18, 18, 18)
-                                            .addComponent(spinnerMinute, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGap(18, 18, 18)
-                                            .addComponent(spinnerAmPm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addComponent(jLabel3)
-                                            .addGap(153, 153, 153))
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(jLabel8)
-                                                .addComponent(jLabel7)
-                                                .addComponent(jLabel9)
-                                                .addComponent(jLabel10)
-                                                .addComponent(jLabel11))
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                .addComponent(priceJText, javax.swing.GroupLayout.DEFAULT_SIZE, 99, Short.MAX_VALUE)
-                                                .addComponent(seatNoJText)
-                                                .addComponent(bookingIDJText)
-                                                .addComponent(customerNameJText)
-                                                .addComponent(customerIdJText)))))
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel2)
-                                            .addComponent(jLabel1))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(flightIdJText)
-                                            .addComponent(fromLocationJText, javax.swing.GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE)))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(0, 0, Short.MAX_VALUE)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jXDatePicker1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(toLocationJText, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                        .addGroup(layout.createSequentialGroup()
-                            .addContainerGap()
-                            .addComponent(backBtn)
-                            .addGap(210, 210, 210)
-                            .addComponent(jButton1))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel12)
-                .addGap(60, 60, 60)
-                .addComponent(seatSelectionComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(144, 144, 144))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel7)
+                            .addComponent(jLabel9)
+                            .addComponent(jLabel10)
+                            .addComponent(jLabel11))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(customerNameJText, javax.swing.GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE)
+                            .addComponent(bookingIDJText)
+                            .addComponent(seatNoJText)
+                            .addComponent(priceJText)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel8)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel3))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(spinnerHour, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(spinnerMinute, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(spinnerAmPm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(seatPreferenceComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(65, 65, 65)
+                                .addComponent(jLabel12)
+                                .addGap(18, 18, 18)
+                                .addComponent(seatSelectionComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(flightIdJText, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(jXDatePicker1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(fromLocationJText, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE)
+                                .addComponent(toLocationJText, javax.swing.GroupLayout.Alignment.LEADING))
+                            .addComponent(customerIdJText, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(0, 116, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(backBtn)
+                        .addGap(219, 219, 219)
+                        .addComponent(jLabel13))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(361, 361, 361)
+                        .addComponent(confirmButton)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(backBtn))
-                .addGap(38, 38, 38)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(backBtn))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(26, 26, 26)
+                        .addComponent(jLabel13)))
+                .addGap(27, 27, 27)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(flightIdJText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -257,11 +270,11 @@ public class SeatSelectionJPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(fromLocationJText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(toLocationJText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(6, 6, 6)
+                .addGap(15, 15, 15)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(jXDatePicker1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -272,13 +285,11 @@ public class SeatSelectionJPanel extends javax.swing.JPanel {
                     .addComponent(spinnerMinute, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(spinnerAmPm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel5)
-                        .addComponent(seatPreferenceComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel12)
-                        .addComponent(seatSelectionComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(seatPreferenceComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel12)
+                    .addComponent(seatSelectionComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
@@ -291,17 +302,17 @@ public class SeatSelectionJPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
                     .addComponent(bookingIDJText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel10)
                     .addComponent(seatNoJText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(6, 6, 6)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel11)
                     .addComponent(priceJText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
+                .addGap(35, 35, 35)
                 .addComponent(confirmButton)
-                .addContainerGap())
+                .addContainerGap(39, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -313,154 +324,145 @@ public class SeatSelectionJPanel extends javax.swing.JPanel {
         String fromLocation = fromLocationJText.getText();
         String toLocation = toLocationJText.getText();
         Date oDate = jXDatePicker1.getDate();
-        if(oDate == null){
+        if (oDate == null) {
             JOptionPane.showMessageDialog(null, "Please Select Date to Travel");
             return;
         }
-       DateFormat oDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        DateFormat oDateFormat = new SimpleDateFormat("yyyy-MM-dd");
         String szDate = oDateFormat.format(oDate);
-             
+
         String seat = seatPreferenceComboBox.getSelectedItem().toString();
         String row = seatSelectionComboBox.getSelectedItem().toString();
 
-        if(seat.equals("")||seat == null){
+        if (seat.equals("") || seat == null) {
             JOptionPane.showMessageDialog(null, "Please Select a seat");
-           return;
+            return;
         }
-        if(row.equals("")||row == null){
+        if (row.equals("") || row == null) {
             JOptionPane.showMessageDialog(null, "Please Select a row");
             return;
         }
-        if(szDate.equals("")||szDate == null){
+        if (szDate.equals("") || szDate == null) {
             JOptionPane.showMessageDialog(null, "Please Select a Date to Book a Flight");
             throw new NumberFormatException("Please select a Date to book a Flight");
         }
-        if(customerIdJText.getText().equals("")||customerIdJText.getText() == null){
+        if (customerIdJText.getText().equals("") || customerIdJText.getText() == null) {
             JOptionPane.showMessageDialog(null, "Please enter Customer Id");
-                  return;      
+            return;
         }
-        try{
-         customerId = Integer.parseInt(customerIdJText.getText());
+        try {
+            customerId = Integer.parseInt(customerIdJText.getText());
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Please enter valid customer id");
+            return;
         }
-        catch(NumberFormatException e){
-             JOptionPane.showMessageDialog(null, "Please enter valid customer id");
-             return;
-        }
-        
-        if(customerNameJText.getText().equals("")||customerNameJText.getText() == null){
+
+        if (customerNameJText.getText().equals("") || customerNameJText.getText() == null) {
             JOptionPane.showMessageDialog(null, "Please enter Customer Name");
             return;
         }
-       SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm a");
-         try {
-             Date date1 = sdf.parse(szDate+" "+spinnerHour.getValue()+":"+spinnerMinute.getValue()+" "+spinnerAmPm.getValue());
-             Date date2 = new Date();
-             String date = sdf.format(date2);
-             date2 = sdf.parse(date);
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm a");
+        try {
+            Date date1 = sdf.parse(szDate + " " + spinnerHour.getValue() + ":" + spinnerMinute.getValue() + " " + spinnerAmPm.getValue());
+            Date date2 = new Date();
+            String date = sdf.format(date2);
+            date2 = sdf.parse(date);
             if (date1.compareTo(date2) <= 0) {
-             JOptionPane.showMessageDialog(null, "Please enter Valid Date");
-             return;
+                JOptionPane.showMessageDialog(null, "Please enter Valid Date");
+                return;
             }
-         } catch (ParseException ex) {
+        } catch (ParseException ex) {
             JOptionPane.showMessageDialog(null, "No Flights available for selected Date. Please enter Valid Date");
-             return;
-         }
-       
-        
+            return;
+        }
+
         int rowNo = 0;
         int bookingId = 0;
-        
+
         List<String> seatList = new ArrayList<String>();
-        for(Customer customer : customerList.getCustomerList()){
-           
-            
-            if(bookingIDJText.getText()==null||bookingIDJText.getText().equals("")){
-                 bookingId = ThreadLocalRandom.current().nextInt(10000, 99999);
-                if(customer.getBookingId()==bookingId){
+        for (Customer customer : customerList.getCustomerList()) {
+
+            if (bookingIDJText.getText() == null || bookingIDJText.getText().equals("")) {
                 bookingId = ThreadLocalRandom.current().nextInt(10000, 99999);
+                if (customer.getBookingId() == bookingId) {
+                    bookingId = ThreadLocalRandom.current().nextInt(10000, 99999);
                 }
-            }else{
-               try{
-                 bookingId = Integer.parseInt(bookingIDJText.getText());
-                  }
-               catch(NumberFormatException e){
-               JOptionPane.showMessageDialog(null, "Invalid Booking Id");
-                return;
-              } 
+            } else {
+                try {
+                    bookingId = Integer.parseInt(bookingIDJText.getText());
+                } catch (NumberFormatException e) {
+                    JOptionPane.showMessageDialog(null, "Invalid Booking Id");
+                    return;
+                }
             }
-            if(customer.getBookingId()==bookingId){
+            if (customer.getBookingId() == bookingId) {
                 customerList.getCustomerList().remove(customer);
                 break;
             }
-             try {
-               rowNo = ((Number)NumberFormat.getInstance().parse(customer.getSeatNo())).intValue();
+            try {
+                rowNo = ((Number) NumberFormat.getInstance().parse(customer.getSeatNo())).intValue();
             } catch (ParseException ex) {
-                 JOptionPane.showMessageDialog(null, "Invalid Seat");
+                JOptionPane.showMessageDialog(null, "Invalid Seat");
                 return;
             }
-            if(customer.getFlightId()==flightId && customer.getJourneyDate().equals(szDate)){
-                if(seatSelectionComboBox.getSelectedIndex()+1==rowNo){
+            if (customer.getFlightId() == flightId && customer.getJourneyDate().equals(szDate)) {
+                if (seatSelectionComboBox.getSelectedIndex() + 1 == rowNo) {
                     seatList.add(customer.getSeatNo());
                 }
             }
-             
+
         }
-                 if(seatPreferenceComboBox.getSelectedIndex()==0 ){
-                  if(((seatList.contains(seatPreferenceComboBox.getSelectedIndex()+1+"A"))&&seatList.contains(seatPreferenceComboBox.getSelectedIndex()+1+"F"))){
-                    JOptionPane.showMessageDialog(null, "Selected Seat is not Available. Please Select another seat.");  
-                    return;
-                    }
-                  else{
-                        if(seatList.contains(seatPreferenceComboBox.getSelectedIndex()+1+"A")){
-                             this.seatNo = String.valueOf((seatSelectionComboBox.getSelectedIndex()+1)+"F");
-                        }
-                        else{
-                           this.seatNo = String.valueOf((seatSelectionComboBox.getSelectedIndex()+1)+"A");  
-                        }
-                    }
+        if (seatPreferenceComboBox.getSelectedIndex() == 0) {
+            if (((seatList.contains(seatPreferenceComboBox.getSelectedIndex() + 1 + "A")) && seatList.contains(seatPreferenceComboBox.getSelectedIndex() + 1 + "F"))) {
+                JOptionPane.showMessageDialog(null, "Selected Seat is not Available. Please Select another seat.");
+                return;
+            } else {
+                if (seatList.contains(seatPreferenceComboBox.getSelectedIndex() + 1 + "A")) {
+                    this.seatNo = String.valueOf((seatSelectionComboBox.getSelectedIndex() + 1) + "F");
+                } else {
+                    this.seatNo = String.valueOf((seatSelectionComboBox.getSelectedIndex() + 1) + "A");
                 }
-                if(seatPreferenceComboBox.getSelectedIndex()==1 ){
-                  if(((seatList.contains(seatPreferenceComboBox.getSelectedIndex()+1+"B"))&&seatList.contains(seatPreferenceComboBox.getSelectedIndex()+1+"E"))){
-                    JOptionPane.showMessageDialog(null, "Selected Seat is not Available. Please Select another seat.");  
-                    return;
-                    }
-                  else{
-                        if(seatList.contains(seatPreferenceComboBox.getSelectedIndex()+1+"B")){
-                             this.seatNo = String.valueOf((seatSelectionComboBox.getSelectedIndex()+1)+"E");
-                        }
-                        else{
-                           this.seatNo = String.valueOf((seatSelectionComboBox.getSelectedIndex()+1)+"B");  
-                        }
-                    }
+            }
+        }
+        if (seatPreferenceComboBox.getSelectedIndex() == 1) {
+            if (((seatList.contains(seatPreferenceComboBox.getSelectedIndex() + 1 + "B")) && seatList.contains(seatPreferenceComboBox.getSelectedIndex() + 1 + "E"))) {
+                JOptionPane.showMessageDialog(null, "Selected Seat is not Available. Please Select another seat.");
+                return;
+            } else {
+                if (seatList.contains(seatPreferenceComboBox.getSelectedIndex() + 1 + "B")) {
+                    this.seatNo = String.valueOf((seatSelectionComboBox.getSelectedIndex() + 1) + "E");
+                } else {
+                    this.seatNo = String.valueOf((seatSelectionComboBox.getSelectedIndex() + 1) + "B");
                 }
-                if(seatPreferenceComboBox.getSelectedIndex()==2 ){
-                    if(((seatList.contains(seatPreferenceComboBox.getSelectedIndex()+1+"C"))&&seatList.contains(seatPreferenceComboBox.getSelectedIndex()+1+"D"))){
-                    JOptionPane.showMessageDialog(null, "Selected Seat is not Available. Please Select another seat.");  
-                    return;
-                    }
-                  else{
-                        if(seatList.contains(seatPreferenceComboBox.getSelectedIndex()+1+"C")){
-                             this.seatNo = String.valueOf((seatSelectionComboBox.getSelectedIndex()+1)+"D");
-                        }
-                        else{
-                           this.seatNo = String.valueOf((seatSelectionComboBox.getSelectedIndex()+1)+"C");  
-                        }
-                    }
-          
-    }
-                double price =0;
+            }
+        }
+        if (seatPreferenceComboBox.getSelectedIndex() == 2) {
+            if (((seatList.contains(seatPreferenceComboBox.getSelectedIndex() + 1 + "C")) && seatList.contains(seatPreferenceComboBox.getSelectedIndex() + 1 + "D"))) {
+                JOptionPane.showMessageDialog(null, "Selected Seat is not Available. Please Select another seat.");
+                return;
+            } else {
+                if (seatList.contains(seatPreferenceComboBox.getSelectedIndex() + 1 + "C")) {
+                    this.seatNo = String.valueOf((seatSelectionComboBox.getSelectedIndex() + 1) + "D");
+                } else {
+                    this.seatNo = String.valueOf((seatSelectionComboBox.getSelectedIndex() + 1) + "C");
+                }
+            }
+
+        }
+        bookingIDJText.setText(String.valueOf(bookingId));
+        double price = 0;
         for (Airplane airplane : flightFleet) {
-            if(flightId==airplane.getFlightId()){
-                airplane.setNoOfSeatsAvalaible(airplane.getNoOfSeatsAvalaible()+1);
+            if (flightId == airplane.getFlightId()) {
+                airplane.setNoOfSeatsAvalaible(airplane.getNoOfSeatsAvalaible() + 1);
                 seatNoJText.setText(this.seatNo);
                 priceJText.setText(String.valueOf(airplane.getPrice()));
                 price = airplane.getPrice();
-               if(!this.seatNo.equals("")){
-               JOptionPane.showMessageDialog(null, "Successfully booked a Seat! "+"Have a nice Journey.");
-               } 
+                if (!this.seatNo.equals("")) {
+                    JOptionPane.showMessageDialog(null, "Successfully booked a Seat! " + "\nYour Booking ID is: " + bookingId + "\nHave a nice Journey.");
+                }
             }
         }
-        bookingIDJText.setText(String.valueOf(bookingId));
+
         flightIdJText.setEnabled(false);
         fromLocationJText.setEnabled(false);
         toLocationJText.setEnabled(false);
@@ -472,18 +474,23 @@ public class SeatSelectionJPanel extends javax.swing.JPanel {
         spinnerHour.setEnabled(false);
         spinnerMinute.setEnabled(false);
         spinnerAmPm.setEnabled(false);
-        
+
         List<Customer> custList = customerList.getCustomerList();
-       
-        Customer customer = new Customer(customerId,flightId,customerNameJText.getText(),bookingId,szDate,this.seatNo,price,fromLocation,toLocation,spinnerHour.getValue()+":"+spinnerMinute.getValue()+" "+spinnerAmPm.getValue());
+
+        Customer customer = new Customer(customerId, flightId, customerNameJText.getText(), bookingId, szDate, this.seatNo, price, fromLocation, toLocation, spinnerHour.getValue() + ":" + spinnerMinute.getValue() + " " + spinnerAmPm.getValue());
         custList.add(customer);
+
+        CardLayout layout = (CardLayout) panelRight.getLayout();
+        ManageTravelAgencyJPanel manageTravelAgencyJPanel = new ManageTravelAgencyJPanel(panelRight, airlinerDirectory, customerList);
+        panelRight.add("ManageTravelAgencyJPanel", manageTravelAgencyJPanel);
+        layout.next(panelRight);
     }//GEN-LAST:event_confirmButtonActionPerformed
 
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
         // TODO add your handling code here:
-        CardLayout layout = (CardLayout)panelRight.getLayout();
+        CardLayout layout = (CardLayout) panelRight.getLayout();
         panelRight.remove(this);
-        layout.previous(panelRight); 
+        layout.previous(panelRight);
     }//GEN-LAST:event_backBtnActionPerformed
 
 
@@ -495,11 +502,11 @@ public class SeatSelectionJPanel extends javax.swing.JPanel {
     private javax.swing.JTextField customerNameJText;
     private javax.swing.JTextField flightIdJText;
     private javax.swing.JTextField fromLocationJText;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

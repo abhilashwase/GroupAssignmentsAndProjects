@@ -9,6 +9,7 @@ import Business.Airliner;
 import Business.AirlinerDirectory;
 import Business.Airplane;
 import Business.UserDirectory;
+import Interface.ManageAirliners.ManageAirlinersJPanel;
 import Interface.ManageAirliners.ViewAirlinerJPanel;
 import java.awt.CardLayout;
 import java.awt.Color;
@@ -31,7 +32,8 @@ public class CreateNewFlightScheduleJPanel extends javax.swing.JPanel {
     private AirlinerDirectory airlineDirectory;
     private String airlinerName;
     private UserDirectory userDirectory;
-    public CreateNewFlightScheduleJPanel(JPanel panelRight,AirlinerDirectory airlineDirectory, String airlinerName, UserDirectory userDirectory) {
+
+    public CreateNewFlightScheduleJPanel(JPanel panelRight, AirlinerDirectory airlineDirectory, String airlinerName, UserDirectory userDirectory) {
         initComponents();
         this.panelRight = panelRight;
         this.airlineDirectory = airlineDirectory;
@@ -64,7 +66,7 @@ public class CreateNewFlightScheduleJPanel extends javax.swing.JPanel {
         spinnerMinute = new javax.swing.JSpinner();
         spinnerAmPm = new javax.swing.JSpinner();
 
-        jLabel1.setFont(new java.awt.Font("Arial", 1, 13)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Trebuchet MS", 1, 24)); // NOI18N
         jLabel1.setText("Create New Flight Schedule");
 
         jLabel2.setText("Flight ID : ");
@@ -78,6 +80,11 @@ public class CreateNewFlightScheduleJPanel extends javax.swing.JPanel {
         jLabel6.setText("Price : ");
 
         backBtn.setText("Back");
+        backBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backBtnActionPerformed(evt);
+            }
+        });
 
         createBtn.setText("Create");
         createBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -97,144 +104,144 @@ public class CreateNewFlightScheduleJPanel extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(backBtn)
+                .addGap(170, 170, 170)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(backBtn)
-                        .addGap(248, 248, 248)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(76, 76, 76)
+                        .addGap(19, 19, 19)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel3)
+                            .addComponent(jLabel5)
                             .addComponent(jLabel4)
-                            .addComponent(jLabel5))
-                        .addGap(23, 23, 23)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel6))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(toLocationJText, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(spinnerHour, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(spinnerMinute, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(spinnerAmPm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(flightIdJText, javax.swing.GroupLayout.DEFAULT_SIZE, 169, Short.MAX_VALUE)
-                            .addComponent(fromLocationJText)
-                            .addComponent(toLocationJText)
-                            .addComponent(priceJText)
-                            .addComponent(createBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addContainerGap(309, Short.MAX_VALUE))
+                            .addComponent(fromLocationJText, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(flightIdJText, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(priceJText, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jLabel1)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(122, 122, 122)
+                        .addComponent(createBtn)))
+                .addContainerGap(253, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(backBtn))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(flightIdJText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(fromLocationJText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(toLocationJText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(3, 3, 3)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(spinnerHour, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(spinnerMinute, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(spinnerAmPm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(priceJText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(createBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(271, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(backBtn))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(26, 26, 26)
+                        .addComponent(jLabel1)
+                        .addGap(46, 46, 46)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel2)
+                            .addComponent(flightIdJText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel3)
+                            .addComponent(fromLocationJText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel4)
+                            .addComponent(toLocationJText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel5)
+                            .addComponent(spinnerHour, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(spinnerMinute, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(spinnerAmPm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel6)
+                            .addComponent(priceJText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(33, 33, 33)
+                        .addComponent(createBtn)))
+                .addContainerGap(200, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void createBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createBtnActionPerformed
         // TODO add your handling code here:
-        flightIdJText.setBorder(new LineBorder(new Color(128,128,128)));
-     fromLocationJText.setBorder(new LineBorder(new Color(128,128,128)));
-     toLocationJText.setBorder(new LineBorder(new Color(128,128,128)));
-     spinnerAmPm.setBorder(new LineBorder(new Color(128,128,128)));
-     spinnerHour.setBorder(new LineBorder(new Color(128,128,128)));
-     spinnerMinute.setBorder(new LineBorder(new Color(128,128,128)));     
-        
-        jLabel2.setForeground(Color.black);
-        jLabel3.setForeground(Color.black);
-        jLabel4.setForeground(Color.black);
-        jLabel5.setForeground(Color.black);
-        if(flightIdJText.getText()==null || flightIdJText.getText().equals("")){
+        flightIdJText.setBorder(new LineBorder(new Color(128, 128, 128)));
+        fromLocationJText.setBorder(new LineBorder(new Color(128, 128, 128)));
+        toLocationJText.setBorder(new LineBorder(new Color(128, 128, 128)));
+        spinnerAmPm.setBorder(new LineBorder(new Color(128, 128, 128)));
+        spinnerHour.setBorder(new LineBorder(new Color(128, 128, 128)));
+        spinnerMinute.setBorder(new LineBorder(new Color(128, 128, 128)));
+
+
+        if (flightIdJText.getText() == null || flightIdJText.getText().equals("")) {
             flightIdJText.setBorder(BorderFactory.createLineBorder(Color.RED));
-            jLabel2.setForeground(Color.red);
             JOptionPane.showMessageDialog(null, "Id cant be empty");
             return;
-     }
-     if(fromLocationJText.getText()==null || fromLocationJText.getText().equals("")){
+        }
+        if (fromLocationJText.getText() == null || fromLocationJText.getText().equals("")) {
             fromLocationJText.setBorder(BorderFactory.createLineBorder(Color.RED));
-            jLabel3.setForeground(Color.red);
             JOptionPane.showMessageDialog(null, "From Location cant be empty");
             return;
-     }
-     if(toLocationJText.getText()==null || toLocationJText.getText().equals("")){
+        }
+        if (toLocationJText.getText() == null || toLocationJText.getText().equals("")) {
             toLocationJText.setBorder(BorderFactory.createLineBorder(Color.RED));
-            jLabel4.setForeground(Color.red);
             JOptionPane.showMessageDialog(null, "To Location cant be empty");
             return;
-     }
-     if(priceJText.getText()==null || priceJText.getText().equals("")){
+        }
+        if (priceJText.getText() == null || priceJText.getText().equals("")) {
             priceJText.setBorder(BorderFactory.createLineBorder(Color.RED));
-            jLabel6.setForeground(Color.red);
             JOptionPane.showMessageDialog(null, "Price cant be empty");
             return;
-     }
-    
-     
-     int flightId = 0;
-     try{
-     flightId = Integer.parseInt(flightIdJText.getText());
-     }
-     catch(NumberFormatException e){
-         JOptionPane.showMessageDialog(null, "Please enter Valid number for No Of Flights");
-         return;
-     }
-      int totalNoOfSeats = 150;
-      double price = 0;
-     try{
-      price = Double.parseDouble(priceJText.getText());
-     }
-     catch(NumberFormatException e){
-        JOptionPane.showMessageDialog(null, "Please enter Valid Price");
-         return; 
-     }
-     
-     
-     for(Airliner airliner : airlineDirectory.getAirlinerList()){
-             if(airliner.getAirlinerName().equalsIgnoreCase(airlinerName)){
-                  List<Airplane> flightFleet  = airliner.getFlightFleet();
-                Airplane airplane = new Airplane(flightId,fromLocationJText.getText(),toLocationJText.getText(),spinnerHour.getValue()+":"+spinnerMinute.getValue()+" "+spinnerAmPm.getValue(),totalNoOfSeats,airlinerName,0,price);
-                 flightFleet.add(airplane);
-                 JOptionPane.showMessageDialog(null, "Flight Added Successfully.");
-                 airliner.setTotalFlightsPerDay(flightFleet.size());
-                 ViewAirlinerJPanel manageFlightSchedule = new ViewAirlinerJPanel(panelRight,airlineDirectory,airliner,userDirectory);
-                 this.panelRight.remove(this);
-                 this.panelRight.add("ManageAirlinerFlightScheduleJPanel", manageFlightSchedule);
-                 CardLayout layout = (CardLayout)this.panelRight.getLayout();
-                 layout.previous(panelRight);
-                  break;
-         }
-     }
+        }
+
+        int flightId = 0;
+        try {
+            flightId = Integer.parseInt(flightIdJText.getText());
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Please enter Valid number for No Of Flights");
+            return;
+        }
+        int totalNoOfSeats = 150;
+        double price = 0;
+        try {
+            price = Double.parseDouble(priceJText.getText());
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Please enter Valid Price");
+            return;
+        }
+
+        for (Airliner airliner : airlineDirectory.getAirlinerList()) {
+            if (airliner.getAirlinerName().equalsIgnoreCase(airlinerName)) {
+                List<Airplane> flightFleet = airliner.getFlightFleet();
+                Airplane airplane = new Airplane(flightId, fromLocationJText.getText(), toLocationJText.getText(), spinnerHour.getValue() + ":" + spinnerMinute.getValue() + " " + spinnerAmPm.getValue(), totalNoOfSeats, airlinerName, 0, price);
+                flightFleet.add(airplane);
+                JOptionPane.showMessageDialog(null, "Flight Added Successfully.");
+                airliner.setTotalFlightsPerDay(flightFleet.size());
+ 
+                CardLayout layout = (CardLayout) panelRight.getLayout();
+                ManageAirlinersJPanel manageAirlinePanel = new ManageAirlinersJPanel(panelRight, airlineDirectory, userDirectory);
+                panelRight.add("ManageAirlinersJPanel", manageAirlinePanel);
+                layout.next(panelRight);
+                break;
+            }
+        }
     }//GEN-LAST:event_createBtnActionPerformed
+
+    private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
+        // TODO add your handling code here:
+        CardLayout layout = (CardLayout) panelRight.getLayout();
+        panelRight.remove(this);
+        layout.previous(panelRight);
+    }//GEN-LAST:event_backBtnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
