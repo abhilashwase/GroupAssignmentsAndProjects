@@ -57,7 +57,6 @@ public class ManageAirlinersJPanel extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         airlinerJTable = new javax.swing.JTable();
-        backBtn = new javax.swing.JButton();
         newAirlinerBtn = new javax.swing.JButton();
         viewAirlinerBtn = new javax.swing.JButton();
         deleteAirlinerBtn = new javax.swing.JButton();
@@ -85,13 +84,6 @@ public class ManageAirlinersJPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(airlinerJTable);
 
-        backBtn.setText("< Back");
-        backBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                backBtnActionPerformed(evt);
-            }
-        });
-
         newAirlinerBtn.setText("New Airliner");
         newAirlinerBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -118,13 +110,8 @@ public class ManageAirlinersJPanel extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(398, 398, 398)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(109, 109, 109)
-                        .addComponent(backBtn)))
+                .addGap(398, 398, 398)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(162, Short.MAX_VALUE)
@@ -143,9 +130,7 @@ public class ManageAirlinersJPanel extends javax.swing.JPanel {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(26, 26, 26)
-                .addComponent(backBtn)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(58, 58, 58)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(41, 41, 41)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -165,13 +150,6 @@ public class ManageAirlinersJPanel extends javax.swing.JPanel {
         panelRight.add("CreateNewAirlinerJPanel", createNewJPanel);
         layout.next(panelRight);
     }//GEN-LAST:event_newAirlinerBtnActionPerformed
-
-    private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
-        // TODO add your handling code here:
-        CardLayout layout = (CardLayout)panelRight.getLayout();
-        panelRight.remove(this);
-        layout.previous(panelRight); 
-    }//GEN-LAST:event_backBtnActionPerformed
 
     private void viewAirlinerBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewAirlinerBtnActionPerformed
         // TODO add your handling code here:
@@ -205,7 +183,6 @@ public class ManageAirlinersJPanel extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable airlinerJTable;
-    private javax.swing.JButton backBtn;
     private javax.swing.JButton deleteAirlinerBtn;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;

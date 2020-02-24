@@ -10,6 +10,7 @@ import Business.AirlinerDirectory;
 import Business.CustomerDirectory;
 import Business.UserAccount;
 import Business.UserDirectory;
+import Interface.ManageAirliners.ManageAirlinersJPanel;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.util.regex.Matcher;
@@ -229,14 +230,21 @@ public class NewTravelAgentJPanel extends javax.swing.JPanel {
         }
         userDirectory.createUserAccount(userNameJText.getText(), passwordJText.getText(),travelAgencyJText.getText() , "Travel Agent");
         JOptionPane.showMessageDialog(null, "Account Created Succesfully.");
+        
+        CardLayout layout = (CardLayout)panelRight.getLayout();
+        TravelAgencyLoginJPanel loginTravelAgencyJPanel = new TravelAgencyLoginJPanel(panelRight, airlineDirectory,customerDirectory, userDirectory);
+        panelRight.add("TravelAgencyLoginJPanel", loginTravelAgencyJPanel);
+        layout.next(panelRight); 
 
     }//GEN-LAST:event_confirmJButtonActionPerformed
 
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
-        // TODO add your handling code here:
+        // TODO add your handling code here
         CardLayout layout = (CardLayout)panelRight.getLayout();
-        panelRight.remove(this);
-        layout.previous(panelRight); 
+        TravelAgencyLoginJPanel loginTravelAgencyJPanel = new TravelAgencyLoginJPanel(panelRight, airlineDirectory,customerDirectory, userDirectory);
+        panelRight.add("TravelAgencyLoginJPanel", loginTravelAgencyJPanel);
+        layout.next(panelRight); 
+
     }//GEN-LAST:event_backBtnActionPerformed
 
 

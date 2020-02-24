@@ -47,9 +47,11 @@ public class BookFlightJPanel extends javax.swing.JPanel {
        {
            Object[] row = new Object[5];
            row[0] = airplane;
-           row[1] = airplane.getFromLocation();
-           row[2] = airplane.getFlightSchedule();
-           row[3] = airplane.getPrice();
+        row[1] = airplane.getFromLocation();
+        row[2] = airplane.getToLocation();
+        row[3] = airplane.getFlightSchedule();
+        row[4] = airplane.getPrice();
+           
            dtm.addRow(row);
        }
     }

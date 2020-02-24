@@ -268,10 +268,6 @@ public class ViewFlightScheduleJPanel extends javax.swing.JPanel {
          }
      }
      
-     
-     
-     
-     
      JOptionPane.showMessageDialog(null, "Flight Updated Successfully.");
     }//GEN-LAST:event_btnSaveActionPerformed
 
