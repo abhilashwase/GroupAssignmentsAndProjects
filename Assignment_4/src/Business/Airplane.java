@@ -15,7 +15,7 @@ import java.util.List;
  * @author Abhilash Wase
  */
 public class Airplane {
-    
+
     private int flightId;
     private String fromLocation;
     private String toLocation;
@@ -36,10 +36,9 @@ public class Airplane {
         this.airlinerName = airlinerName;
         this.noOfSeatsAvalaible = noOfSeatsAvalaible;
         this.price = price;
-        
+
     }
-    
-    
+
     public int getFlightId() {
         return flightId;
     }
@@ -120,10 +119,9 @@ public class Airplane {
         this.price = price;
     }
 
-    
     @Override
     public String toString() {
-        return  String.valueOf(flightId);
+        return String.valueOf(flightId);
     }
-    
+
 }

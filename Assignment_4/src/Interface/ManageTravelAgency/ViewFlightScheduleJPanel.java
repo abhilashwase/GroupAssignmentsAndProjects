@@ -9,6 +9,7 @@ import Business.Airliner;
 import Business.AirlinerDirectory;
 import Business.Airplane;
 import Business.UserDirectory;
+import Interface.ManageAirliners.ManageAirlinersJPanel;
 import Interface.ManageAirliners.ViewAirlinerJPanel;
 import java.awt.CardLayout;
 import java.util.List;
@@ -25,33 +26,36 @@ public class ViewFlightScheduleJPanel extends javax.swing.JPanel {
      * Creates new form ViewFlightScheduleJPanel
      */
     private JPanel panelRight;
-    private  AirlinerDirectory airlineDirectory;
+    private AirlinerDirectory airlineDirectory;
     private Airplane airplane;
     private List<Airplane> flightFleet;
     private Airliner airliner;
     private UserDirectory userDirectory;
-    public ViewFlightScheduleJPanel(JPanel panelRight,AirlinerDirectory airlineDirectory, Airplane airplane, List<Airplane> flightFleet,Airliner airliner, UserDirectory userDirectory) {
+
+    public ViewFlightScheduleJPanel(JPanel panelRight, AirlinerDirectory airlineDirectory, Airplane airplane, List<Airplane> flightFleet, Airliner airliner, UserDirectory userDirectory) {
         initComponents();
         this.panelRight = panelRight;
         this.airlineDirectory = airlineDirectory;
         this.airplane = airplane;
         this.flightFleet = flightFleet;
-        this.airliner =airliner;
+        this.airliner = airliner;
         this.userDirectory = userDirectory;
         populateFlightDetails();
     }
-    public void populateFlightDetails(){
+
+    public void populateFlightDetails() {
         flightIdJText.setText(String.valueOf(airplane.getFlightId()));
         fromLocationJText.setText(airplane.getFromLocation());
         toLocationJText.setText(airplane.getToLocation());
-         String scheduledTime = airplane.getFlightSchedule();
+        String scheduledTime = airplane.getFlightSchedule();
         String[] row = scheduledTime.split(":");
         spinnerHour.setValue(row[0]);
-         String min = row[1];
+        String min = row[1];
         spinnerMinute.setValue(min.substring(0, 2));
-        spinnerAmPm.setValue(scheduledTime.matches("PM")?"PM":"AM");
+        spinnerAmPm.setValue(scheduledTime.matches("PM") ? "PM" : "AM");
         priceJText.setText(String.valueOf(airplane.getPrice()));
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -76,9 +80,9 @@ public class ViewFlightScheduleJPanel extends javax.swing.JPanel {
         priceJText = new javax.swing.JTextField();
         backBtn = new javax.swing.JButton();
         btnUpdate = new javax.swing.JButton();
-        btnCancel = new javax.swing.JButton();
         btnSave = new javax.swing.JButton();
 
+        jLabel1.setFont(new java.awt.Font("Trebuchet MS", 1, 24)); // NOI18N
         jLabel1.setText("View Flight Schedule");
 
         jLabel2.setText("Flight ID :");
@@ -91,17 +95,27 @@ public class ViewFlightScheduleJPanel extends javax.swing.JPanel {
 
         jLabel6.setText("Price :");
 
+        flightIdJText.setEditable(false);
         flightIdJText.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 flightIdJTextActionPerformed(evt);
             }
         });
 
+        fromLocationJText.setEditable(false);
+
+        toLocationJText.setEditable(false);
+
         spinnerHour.setModel(new javax.swing.SpinnerListModel(new String[] {"12", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11"}));
+        spinnerHour.setEnabled(false);
 
         spinnerMinute.setModel(new javax.swing.SpinnerListModel(new String[] {"00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59"}));
+        spinnerMinute.setEnabled(false);
 
         spinnerAmPm.setModel(new javax.swing.SpinnerListModel(new String[] {"AM", "PM"}));
+        spinnerAmPm.setEnabled(false);
+
+        priceJText.setEditable(false);
 
         backBtn.setText("Back");
         backBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -117,13 +131,6 @@ public class ViewFlightScheduleJPanel extends javax.swing.JPanel {
             }
         });
 
-        btnCancel.setText("Cancel");
-        btnCancel.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCancelActionPerformed(evt);
-            }
-        });
-
         btnSave.setText("Save");
         btnSave.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -135,52 +142,58 @@ public class ViewFlightScheduleJPanel extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(backBtn)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 228, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(310, 310, 310))
             .addGroup(layout.createSequentialGroup()
+                .addGap(281, 281, 281)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(backBtn)
-                        .addGap(264, 264, 264)
-                        .addComponent(jLabel1))
+                        .addComponent(jLabel6)
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(145, 145, 145)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel6)
-                            .addComponent(btnSave))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(34, 34, 34)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(spinnerHour, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(spinnerMinute, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(spinnerAmPm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(flightIdJText)
-                                    .addComponent(fromLocationJText)
-                                    .addComponent(toLocationJText)
-                                    .addComponent(priceJText)))
+                                .addComponent(jLabel5)
+                                .addGap(18, 18, 18)
+                                .addComponent(spinnerHour, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(spinnerMinute, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(spinnerAmPm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnUpdate)
-                                .addGap(36, 36, 36)
-                                .addComponent(btnCancel)))))
-                .addContainerGap(390, Short.MAX_VALUE))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel4)
+                                    .addComponent(jLabel2))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(flightIdJText, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(toLocationJText, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(fromLocationJText, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(priceJText, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(62, 62, 62)
+                                .addComponent(btnSave)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnUpdate)))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(backBtn))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(33, 33, 33)
+                        .addComponent(jLabel1)))
+                .addGap(44, 44, 44)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(backBtn))
-                .addGap(25, 25, 25)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel2)
                     .addComponent(flightIdJText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
@@ -201,12 +214,11 @@ public class ViewFlightScheduleJPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(priceJText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(43, 43, 43)
+                .addGap(48, 48, 48)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSave)
-                    .addComponent(btnUpdate)
-                    .addComponent(btnCancel))
-                .addContainerGap(205, Short.MAX_VALUE))
+                    .addComponent(btnUpdate))
+                .addContainerGap(157, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -217,9 +229,8 @@ public class ViewFlightScheduleJPanel extends javax.swing.JPanel {
         toLocationJText.setEditable(true);
         spinnerHour.setEnabled(true);
         spinnerMinute.setEnabled(true);
-        spinnerAmPm.setEnabled(true);     
+        spinnerAmPm.setEnabled(true);
         priceJText.setEditable(true);
-        btnCancel.setEnabled(true);
         btnSave.setEnabled(true);
         btnUpdate.setEnabled(false);
     }//GEN-LAST:event_btnUpdateActionPerformed
@@ -235,79 +246,47 @@ public class ViewFlightScheduleJPanel extends javax.swing.JPanel {
         priceJText.setEditable(false);
         btnSave.setEnabled(false);
         btnUpdate.setEnabled(true);
-     
-     int flightId = 0;
-     try{
-     flightId = Integer.parseInt(flightIdJText.getText());
-     }
-     catch(NumberFormatException e){
-         JOptionPane.showMessageDialog(null, "Please enter number for flightId");
-         return;
-     }
-     double price = 0;
-     try{
-     price = Double.parseDouble(priceJText.getText());
-     }
-     catch(NumberFormatException e){
-         JOptionPane.showMessageDialog(null, "Please enter number for price");
-         return;
-     }
-     String scheduledTime = airplane.getFlightSchedule();
-        String[] row = scheduledTime.split(":");
-        spinnerHour.setValue(row[0]);
-         String min = row[1];
-        spinnerMinute.setValue(min.substring(0, 2));
-        spinnerAmPm.setValue(scheduledTime.matches("PM")?"PM":"AM");
-     for(Airplane airpln : flightFleet){
-         if(airpln.getFlightId()==airplane.getFlightId()){
-              airpln.setFlightId(flightId);
-              airpln.setFlightSchedule(spinnerHour.getValue()+":"+spinnerMinute.getValue()+" "+spinnerAmPm.getValue());
-              airpln.setFromLocation(fromLocationJText.getText());
-              airpln.setToLocation(toLocationJText.getText());
-              airpln.setPrice(price);
-         }
-     }
-     
-     
-     
-     
-     
-     JOptionPane.showMessageDialog(null, "Flight Updated Successfully.");
+
+        int flightId = 0;
+        try {
+            flightId = Integer.parseInt(flightIdJText.getText());
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Please enter number for flightId");
+            return;
+        }
+        double price = 0;
+        try {
+            price = Double.parseDouble(priceJText.getText());
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Please enter number for price");
+            return;
+        }
+
+        for (Airplane airpln : flightFleet) {
+            if (airpln.getFlightId() == airplane.getFlightId()) {
+                airpln.setFlightId(flightId);
+                airpln.setFlightSchedule(spinnerHour.getValue() + ":" + spinnerMinute.getValue() + " " + spinnerAmPm.getValue());
+                airpln.setFromLocation(fromLocationJText.getText());
+                airpln.setToLocation(toLocationJText.getText());
+                airpln.setPrice(price);
+            }
+        }
+
+        JOptionPane.showMessageDialog(null, "Flight Updated Successfully.");
+        
+        CardLayout layout = (CardLayout) panelRight.getLayout();
+        ManageAirlinersJPanel manageAirlinePanel = new ManageAirlinersJPanel(panelRight, airlineDirectory, userDirectory);
+        panelRight.add("ManageAirlinersJPanel", manageAirlinePanel);
+        layout.next(panelRight);
     }//GEN-LAST:event_btnSaveActionPerformed
-
-    private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
-        // TODO add your handling code here:
-        flightIdJText.setText(String.valueOf(airplane.getFlightId()));
-        fromLocationJText.setText(airplane.getFromLocation());
-        toLocationJText.setText(airplane.getToLocation());
-        String scheduledTime = airplane.getFlightSchedule();
-        String[] row = scheduledTime.split(":");
-        spinnerHour.setValue(row[0]);
-        String min = row[1];
-        spinnerMinute.setValue(min.substring(0, 2));
-        spinnerAmPm.setValue(scheduledTime.matches("PM")?"PM":"AM");
-        priceJText.setText(String.valueOf(airplane.getPrice()));
-
-        flightIdJText.setEditable(false);
-        fromLocationJText.setEditable(false);
-        toLocationJText.setEditable(false);
-        priceJText.setEditable(false);
-        spinnerHour.setEnabled(false);
-        spinnerMinute.setEnabled(false);
-        spinnerAmPm.setEnabled(false);
-
-        btnCancel.setEnabled(false);
-        btnSave.setEnabled(false);
-        btnUpdate.setEnabled(true);
-    }//GEN-LAST:event_btnCancelActionPerformed
 
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
         // TODO add your handling code here:
         this.panelRight.remove(this);
-        ViewAirlinerJPanel viewFlightSchedule = new ViewAirlinerJPanel(panelRight,airlineDirectory,airliner,userDirectory);
+        ViewAirlinerJPanel viewFlightSchedule = new ViewAirlinerJPanel(panelRight, airlineDirectory, airliner, userDirectory);
         viewFlightSchedule.populateAirlinerDetails();
         this.panelRight.add("ViewAirlinerJPanel", viewFlightSchedule);
-        CardLayout layout = (CardLayout)this.panelRight.getLayout();
+        CardLayout layout = (CardLayout) this.panelRight.getLayout();
         layout.previous(panelRight);
     }//GEN-LAST:event_backBtnActionPerformed
 
@@ -318,7 +297,6 @@ public class ViewFlightScheduleJPanel extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backBtn;
-    private javax.swing.JButton btnCancel;
     private javax.swing.JButton btnSave;
     private javax.swing.JButton btnUpdate;
     private javax.swing.JTextField flightIdJText;
