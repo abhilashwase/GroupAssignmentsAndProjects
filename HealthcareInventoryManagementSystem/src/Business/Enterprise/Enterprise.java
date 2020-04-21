@@ -12,29 +12,32 @@ import Business.Organization.OrganizationDirectory;
  *
  * @author Abhilash Wase
  */
-public abstract class Enterprise extends Organization{
-     private EnterpriseType enterpriseType;
+public abstract class Enterprise extends Organization {
+
+    private EnterpriseType enterpriseType;
     private OrganizationDirectory organizationDirectory;
 
     public OrganizationDirectory getOrganizationDirectory() {
         return organizationDirectory;
     }
-    
-    public enum EnterpriseType{
-        Healthcare("Healthcare"),Vendor("Vendor"),NGO("NGO");
-        
+
+    public enum EnterpriseType {
+        Healthcare("Healthcare"), Vendor("Vendor"), NGO("NGO");
+
         private String value;
-        
-        private EnterpriseType(String value){
-            this.value=value;
+
+        private EnterpriseType(String value) {
+            this.value = value;
         }
+
         public String getValue() {
             return value;
         }
+
         @Override
-        public String toString(){
-        return value;
-    }
+        public String toString() {
+            return value;
+        }
     }
 
     public EnterpriseType getEnterpriseType() {
@@ -44,10 +47,10 @@ public abstract class Enterprise extends Organization{
     public void setEnterpriseType(EnterpriseType enterpriseType) {
         this.enterpriseType = enterpriseType;
     }
-    
-    public Enterprise(String name,EnterpriseType type){
+
+    public Enterprise(String name, EnterpriseType type) {
         super(name);
-        this.enterpriseType=type;
-        organizationDirectory=new OrganizationDirectory();
+        this.enterpriseType = type;
+        organizationDirectory = new OrganizationDirectory();
     }
 }

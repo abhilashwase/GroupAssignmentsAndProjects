@@ -13,11 +13,12 @@ import java.util.ArrayList;
  *
  * @author Abhilash Wase
  */
-public class AdminOrganization extends Organization{
-     public AdminOrganization() {
+public class AdminOrganization extends Organization {
+
+    public AdminOrganization() {
         super(Type.Admin.getValue());
     }
-    
+
     @Override
     public ArrayList<Role> getSupportedRole() {
         ArrayList<Role> roles = new ArrayList();

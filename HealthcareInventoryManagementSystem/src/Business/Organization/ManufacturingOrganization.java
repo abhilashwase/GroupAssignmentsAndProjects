@@ -13,16 +13,16 @@ import java.util.ArrayList;
  *
  * @author Abhilash Wase
  */
-public class ManufacturingOrganization extends Organization{
+public class ManufacturingOrganization extends Organization {
+
     public ManufacturingOrganization() {
         super(Organization.Type.Manufacturing.getValue());
     }
 
-    
     @Override
     public ArrayList<Role> getSupportedRole() {
         ArrayList<Role> roles = new ArrayList();
         roles.add(new ManufacturerRole());
         return roles;
-    } 
+    }
 }
