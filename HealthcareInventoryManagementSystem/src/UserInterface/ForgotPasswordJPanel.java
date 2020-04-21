@@ -55,10 +55,10 @@ public class ForgotPasswordJPanel extends javax.swing.JPanel {
     private String sendEmail(String emailAdd) {
         final String to = emailAdd;
         boolean sessionDebug = false;
-        String from = "abhiwase1995@gmail.com";
+        String from = "klkeshav08@gmail.com";
         String host = "smtp.gmail.com";
-        String user = "abhiwase1995@gmail.com";
-        String pass = "lordbuddha";
+        String user = "klkeshav08@gmail.com";
+        String pass = "Alpha_123";
         Properties properties = System.getProperties();
         properties.setProperty("mail.smtp.host", host);
         properties.put("mail.smtp.starttls.required", "true");
@@ -78,9 +78,9 @@ public class ForgotPasswordJPanel extends javax.swing.JPanel {
             message.setRecipient(Message.RecipientType.TO, new InternetAddress(to));
             InternetAddress address;
             address = new InternetAddress(to);
-            message.setSubject("Forgot Your Password");
+            message.setSubject("CDC System Alert - New Password Generation");
 
-            message.setText(pin + " is your code. Please dont share with anyone.");
+            message.setText("Your Secret pin is " + pin + " . Please do not share your pin.");
             Transport transport = session.getTransport("smtp");
             transport.connect(host, user, pass);
             transport.sendMessage(message, message.getAllRecipients());
@@ -281,7 +281,7 @@ public class ForgotPasswordJPanel extends javax.swing.JPanel {
             for (Enterprise enterprise : network.getEnterpriseDirectory().getEnterpriseList()) {
                 for (UserAccount ua : enterprise.getUserAccountDirectory().getUserAccountList()) {
                     if (userName.equals(ua.getUsername())) {
-                        pin = sendEmail("abhiwase1995@gmail.com");
+                        pin = sendEmail("klkeshav08@gmail.com");
                         if (pin == null || pin.equals("")) {
                             JOptionPane.showMessageDialog(null, "ERROR : Password Change Failed. Please try again.");
                             return;
@@ -305,7 +305,7 @@ public class ForgotPasswordJPanel extends javax.swing.JPanel {
                     for (Organization org : enterprise.getOrganizationDirectory().getOrganizationList()) {
                         for (UserAccount ua : org.getUserAccountDirectory().getUserAccountList()) {
                             if (userName.equals(ua.getUsername())) {
-                                pin = sendEmail("abhiwase1995@gmail.com");
+                                pin = sendEmail("klkeshav08@gmail.com");
                                 if (pin == null || pin.equals("")) {
                                     JOptionPane.showMessageDialog(null, "ERROR : Password Change Failed. Please try again.");
                                     return;
