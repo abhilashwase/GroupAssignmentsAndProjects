@@ -71,7 +71,7 @@ public class ManageNetworkJPanel extends javax.swing.JPanel {
 
         setBackground(new java.awt.Color(255, 255, 255));
 
-        networkJTable.setFont(new java.awt.Font("Times New Roman", 2, 18)); // NOI18N
+        networkJTable.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         networkJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null},
@@ -116,7 +116,7 @@ public class ManageNetworkJPanel extends javax.swing.JPanel {
             }
         });
 
-        nameJTextField.setFont(new java.awt.Font("Times New Roman", 2, 18)); // NOI18N
+        nameJTextField.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
         backJButton.setBackground(new java.awt.Color(0, 102, 204));
         backJButton.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N

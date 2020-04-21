@@ -276,7 +276,7 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
         nameJTextField.setBorder(new LineBorder(new Color(128, 128, 128)));
         jLabel1.setForeground(Color.BLACK);
         if (isStringOnlyAlphabet(nameJTextField.getText()) == false) {
-            JOptionPane.showMessageDialog(null, "Please enter valid Network name");
+            JOptionPane.showMessageDialog(null, "Please enter valid name");
             nameJTextField.setBorder(BorderFactory.createLineBorder(Color.RED));
             jLabel1.setForeground(Color.RED);
         } else {
