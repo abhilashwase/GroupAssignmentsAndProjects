@@ -33,6 +33,22 @@ public class OrganizationDirectory {
             organization = new LabOrganization();
             organizationList.add(organization);
         }
+        else if (type.getValue().equals(Type.Sales.getValue())){
+            organization = new SalesOrganization();
+            organizationList.add(organization);
+        }
+        else if (type.getValue().equals(Type.Hospital.getValue())){
+            organization = new HospitalOrganization();
+            organizationList.add(organization);
+        }
+        else if (type.getValue().equals(Type.WasteManagement.getValue())){
+            organization = new WasteManagementOrganization();
+            organizationList.add(organization);
+        }
+        else if (type.getValue().equals(Type.NGO.getValue())){
+            organization = new NGOOrganization();
+            organizationList.add(organization);
+        }
         else if (type.getValue().equals(Type.Manufacturing.getValue())){
             organization = new ManufacturingOrganization();
             organizationList.add(organization);
