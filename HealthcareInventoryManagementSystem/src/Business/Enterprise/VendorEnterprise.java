@@ -13,9 +13,11 @@ import java.util.ArrayList;
  * @author Abhilash Wase
  */
 public class VendorEnterprise extends Enterprise {
-     public VendorEnterprise(String name){
-        super(name,Enterprise.EnterpriseType.Vendor);
+
+    public VendorEnterprise(String name) {
+        super(name, Enterprise.EnterpriseType.Vendor);
     }
+
     @Override
     public ArrayList<Role> getSupportedRole() {
         return null;
