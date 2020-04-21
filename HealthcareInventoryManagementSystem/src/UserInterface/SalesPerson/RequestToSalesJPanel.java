@@ -16,13 +16,13 @@ import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
-import org.jfree.chart.ChartFactory;
-import org.jfree.chart.ChartFrame;
-import org.jfree.chart.JFreeChart;
-import org.jfree.chart.plot.CategoryPlot;
-import org.jfree.chart.plot.PlotOrientation;
-import org.jfree.chart.renderer.category.BarRenderer;
-import org.jfree.data.category.DefaultCategoryDataset;
+//import org.jfree.chart.ChartFactory;
+//import org.jfree.chart.ChartFrame;
+//import org.jfree.chart.JFreeChart;
+//import org.jfree.chart.plot.CategoryPlot;
+//import org.jfree.chart.plot.PlotOrientation;
+//import org.jfree.chart.renderer.category.BarRenderer;
+//import org.jfree.data.category.DefaultCategoryDataset;
 
 /**
  *
