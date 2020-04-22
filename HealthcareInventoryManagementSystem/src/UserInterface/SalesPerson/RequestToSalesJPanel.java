@@ -3,43 +3,77 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package UserInterface.LabAssistant;
+package UserInterface.SalesPerson;
+
 import Business.EcoSystem;
-import Business.Organization.LabOrganization;
+import Business.Enterprise.Enterprise;
 import Business.Organization.Organization;
+import Business.Organization.SalesOrganization;
 import Business.UserAccount.UserAccount;
-import Business.WorkQueue.LabTestWorkRequest;
+import Business.WorkQueue.SalesWorkRequest;
 import Business.WorkQueue.WorkRequest;
 import java.awt.CardLayout;
-import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
+//import org.jfree.chart.ChartFactory;
+//import org.jfree.chart.ChartFrame;
+//import org.jfree.chart.JFreeChart;
+//import org.jfree.chart.plot.CategoryPlot;
+//import org.jfree.chart.plot.PlotOrientation;
+//import org.jfree.chart.renderer.category.BarRenderer;
+//import org.jfree.data.category.DefaultCategoryDataset;
 
 /**
  *
- * @author Keshav
+ * @author Ajith
  */
-
-public class RequestLabTestJPanel extends javax.swing.JPanel {
+public class RequestToSalesJPanel extends javax.swing.JPanel {
 
     /**
-     * Creates new form RequestLabTestJPanel
+     * Creates new form RequestToSalesJPanel
      */
     private JPanel userProcessContainer;
     private EcoSystem business;
     private UserAccount userAccount;
-    private LabOrganization labOrganization;
-    public RequestLabTestJPanel(JPanel userProcessContainer, UserAccount account, Organization organization, EcoSystem business) {
+    private SalesOrganization salesOrganization;
+    private Enterprise enterprise;
+    public RequestToSalesJPanel(JPanel userProcessContainer, UserAccount account, Organization organization, EcoSystem business,Enterprise enterprise) {
         initComponents();
-        
         this.userProcessContainer = userProcessContainer;
         this.userAccount = account;
         this.business = business;
-        this.labOrganization = (LabOrganization)organization;
-        
+        this.salesOrganization = (SalesOrganization)organization;
+        this.enterprise  = enterprise;
         populateTable();
+        //showGraph();
     }
+    
+//    public void showGraph(){
+//        
+//        int length = salesOrganization.getWorkQueue().getWorkRequestList().size();
+//        DefaultCategoryDataset dataset = new DefaultCategoryDataset();
+//        int count = 0;
+//        
+//        for(int i=0;i<=length;i++){
+//            WorkRequest so = salesOrganization.getWorkQueue().getWorkRequestList().get(i);
+//            if (so.getRequestDate())
+//            
+//        }
+//        
+//        dataset.setValue(70, "marks", "Abhi");
+//        dataset.setValue(60, "marks", "Ajith");
+//        dataset.setValue(50, "marks", "Keshav");
+//        
+//        JFreeChart chart = ChartFactory.createLineChart("Request Stats", "Date", "No of requests", dataset, PlotOrientation.VERTICAL,false,true,true);
+//        BarRenderer barRenderer = null;
+//        CategoryPlot categoryPlot =null;
+//        barRenderer = new BarRenderer();
+//        ChartFrame frame = new ChartFrame("Query Chart", chart);
+//        frame.setVisible(true);
+//        frame.setSize(400,650);
+//    
+//    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -52,9 +86,10 @@ public class RequestLabTestJPanel extends javax.swing.JPanel {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         workRequestJTable = new javax.swing.JTable();
+        refreshJButton = new javax.swing.JButton();
         assignJButton = new javax.swing.JButton();
         processJButton = new javax.swing.JButton();
-        refreshJButton = new javax.swing.JButton();
+        decomposingReqJButton = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel17 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
@@ -76,19 +111,23 @@ public class RequestLabTestJPanel extends javax.swing.JPanel {
             Class[] types = new Class [] {
                 java.lang.Object.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
-            boolean[] canEdit = new boolean [] {
-                false, true, true, false
-            };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
+        });
+        workRequestJTable.setSelectionBackground(new java.awt.Color(0, 102, 204));
+        jScrollPane1.setViewportView(workRequestJTable);
 
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
+        refreshJButton.setBackground(new java.awt.Color(0, 102, 204));
+        refreshJButton.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        refreshJButton.setForeground(new java.awt.Color(255, 255, 255));
+        refreshJButton.setText("Refresh");
+        refreshJButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                refreshJButtonActionPerformed(evt);
             }
         });
-        jScrollPane1.setViewportView(workRequestJTable);
 
         assignJButton.setBackground(new java.awt.Color(0, 102, 204));
         assignJButton.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -110,13 +149,13 @@ public class RequestLabTestJPanel extends javax.swing.JPanel {
             }
         });
 
-        refreshJButton.setBackground(new java.awt.Color(0, 102, 204));
-        refreshJButton.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        refreshJButton.setForeground(new java.awt.Color(255, 255, 255));
-        refreshJButton.setText("Refresh");
-        refreshJButton.addActionListener(new java.awt.event.ActionListener() {
+        decomposingReqJButton.setBackground(new java.awt.Color(0, 102, 204));
+        decomposingReqJButton.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        decomposingReqJButton.setForeground(new java.awt.Color(255, 255, 255));
+        decomposingReqJButton.setText("View Manufacturing Kits");
+        decomposingReqJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                refreshJButtonActionPerformed(evt);
+                decomposingReqJButtonActionPerformed(evt);
             }
         });
 
@@ -153,58 +192,85 @@ public class RequestLabTestJPanel extends javax.swing.JPanel {
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(0, 102, 204));
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel6.setText("LAB TESTING REQUESTS");
+        jLabel6.setText("MANAGE SALES REQUESTS");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(118, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel10, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jLabel6)
-                                .addGap(204, 204, 204))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(assignJButton)
-                                .addGap(18, 18, 18)
-                                .addComponent(processJButton)
-                                .addGap(18, 18, 18)
-                                .addComponent(refreshJButton)
-                                .addGap(260, 260, 260))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 839, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(223, 223, 223)
+                        .addComponent(assignJButton)
                         .addGap(18, 18, 18)
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(processJButton)
+                        .addGap(18, 18, 18)
+                        .addComponent(decomposingReqJButton)
+                        .addGap(18, 18, 18)
+                        .addComponent(refreshJButton))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(244, 244, 244)
+                        .addComponent(jLabel6))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(76, 76, 76)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 832, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(131, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(24, 24, 24)
+                .addComponent(jLabel6)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(assignJButton)
                     .addComponent(processJButton)
+                    .addComponent(decomposingReqJButton)
                     .addComponent(refreshJButton))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 129, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 65, Short.MAX_VALUE)
                 .addComponent(jLabel10))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void refreshJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshJButtonActionPerformed
+       
+        populateTable();
+    }//GEN-LAST:event_refreshJButtonActionPerformed
+    public void populateTable(){
+        DefaultTableModel model = (DefaultTableModel)workRequestJTable.getModel();
+        
+        model.setRowCount(0);
+        
+        for(WorkRequest request : salesOrganization.getWorkQueue().getWorkRequestList()){
+            Object[] row = new Object[5];
+            row[0] = request.getRequestDate();
+            //row[1] = request.getResolveDate();
+            row[1] = request.getSender().getEmployee().getName();
+            row[2] = request.getReceiver() == null ? null : request.getReceiver().getEmployee().getName();
+            row[3] = request;
+            
+            model.addRow(row);
+        }
+    }
     private void assignJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_assignJButtonActionPerformed
         int selectedRow = workRequestJTable.getSelectedRow();
         if (selectedRow < 0){
             return;
         }
         WorkRequest request = (WorkRequest)workRequestJTable.getValueAt(selectedRow, 3);
+        if("Pending".equalsIgnoreCase(request.getStatus())){
+            JOptionPane.showMessageDialog(null, "Request is already assigned");
+            return;
+        }
         if("Completed".equalsIgnoreCase(request.getStatus())){
             JOptionPane.showMessageDialog(null, "Request is already completed");
             return;
@@ -213,28 +279,11 @@ public class RequestLabTestJPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Request is already assigned. Please Process the request");
             return;
         }
-        
         request.setReceiver(userAccount);
         request.setStatus("Pending");
-        populateTable();
-
-    }//GEN-LAST:event_assignJButtonActionPerformed
-    public void populateTable(){
-        DefaultTableModel model = (DefaultTableModel)workRequestJTable.getModel();
         
-        model.setRowCount(0);
-         ArrayList<WorkRequest> list = labOrganization.getWorkQueue().getWorkRequestList();
-        for(int i=1; i<list.size();i++ ){
-            LabTestWorkRequest request =(LabTestWorkRequest) list.get(i);
-            Object[] row = new Object[4];
-            row[0] = request.getRequestDate();
-            row[1] = request.getSender().getEmployee().getName();
-            row[2] = request.getReceiver() == null ? null : request.getReceiver().getEmployee().getName();
-            row[3] = request;
-            
-            model.addRow(row);
-        }
-    }
+        populateTable();
+    }//GEN-LAST:event_assignJButtonActionPerformed
 
     private void processJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_processJButtonActionPerformed
 
@@ -243,8 +292,8 @@ public class RequestLabTestJPanel extends javax.swing.JPanel {
         if (selectedRow < 0){
             return;
         }
-        
-        LabTestWorkRequest request = (LabTestWorkRequest)workRequestJTable.getValueAt(selectedRow, 3);
+
+        SalesWorkRequest request = (SalesWorkRequest)workRequestJTable.getValueAt(selectedRow, 3);
         if("sent".equalsIgnoreCase(request.getStatus())){
             JOptionPane.showMessageDialog(null, "Request is not assigned. Please assign the request first.");
             return;
@@ -255,16 +304,20 @@ public class RequestLabTestJPanel extends javax.swing.JPanel {
         }
         request.setStatus("Processing");
 
-        LabAssistantWorkAreaJPanel labAssistantWorkAreaJPanel = new LabAssistantWorkAreaJPanel(userProcessContainer,business, request,labOrganization);
-        userProcessContainer.add("LabAssistantWorkAreaJPanel", labAssistantWorkAreaJPanel);
+        SalesPersonWorkAreaJPanel salesPersonWorkAreaJPanel = new SalesPersonWorkAreaJPanel(userProcessContainer,userAccount,salesOrganization,business, request);
+        userProcessContainer.add("SalesPersonWorkAreaJPanel", salesPersonWorkAreaJPanel);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
-      
+
     }//GEN-LAST:event_processJButtonActionPerformed
 
-    private void refreshJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshJButtonActionPerformed
-        populateTable();
-    }//GEN-LAST:event_refreshJButtonActionPerformed
+    private void decomposingReqJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_decomposingReqJButtonActionPerformed
+        DecomposingWasteJPanel decomposingWaste = new DecomposingWasteJPanel(userProcessContainer,business, userAccount,enterprise);
+        userProcessContainer.add("DecomposingWasteJPanel", decomposingWaste);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+        
+    }//GEN-LAST:event_decomposingReqJButtonActionPerformed
 
     private void jLabel17MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel17MouseClicked
         // TODO add your handling code here:
@@ -274,6 +327,7 @@ public class RequestLabTestJPanel extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton assignJButton;
+    private javax.swing.JButton decomposingReqJButton;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel6;
