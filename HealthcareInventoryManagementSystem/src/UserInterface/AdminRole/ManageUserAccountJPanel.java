@@ -419,10 +419,10 @@ public class ManageUserAccountJPanel extends javax.swing.JPanel {
      private void sendEmail(String emailAdd,UserAccount ua, String date) {
             final String to = emailAdd;
             boolean sessionDebug=false;
-            String from = "abhiwase1995@gmail.com";
+            String from = "klkeshav08@gmail.com";
             String host = "smtp.gmail.com";
-            String user = "abhiwase1995@gmail.com";
-            String pass = "";
+            String user = "klkeshav08@gmail.com";
+            String pass = "Alpha_123";
             
            
             Properties properties = System.getProperties();  
@@ -443,7 +443,7 @@ public class ManageUserAccountJPanel extends javax.swing.JPanel {
             message.setRecipient(Message.RecipientType.TO,new InternetAddress(to));  
             InternetAddress address;
             address = new InternetAddress(to);
-            message.setSubject("New User Added");
+            message.setSubject("CDC System Alert - New User Created");
             
             
             BodyPart messageBodyPart = new MimeBodyPart();

@@ -224,7 +224,7 @@ public class RequestLabTestJPanel extends javax.swing.JPanel {
         
         model.setRowCount(0);
          ArrayList<WorkRequest> list = labOrganization.getWorkQueue().getWorkRequestList();
-        for(int i=0; i<list.size();i++ ){
+        for(int i=1; i<list.size();i++ ){
             LabTestWorkRequest request =(LabTestWorkRequest) list.get(i);
             Object[] row = new Object[4];
             row[0] = request.getRequestDate();

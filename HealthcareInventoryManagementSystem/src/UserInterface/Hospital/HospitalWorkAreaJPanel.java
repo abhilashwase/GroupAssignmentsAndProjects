@@ -275,11 +275,10 @@ public class HospitalWorkAreaJPanel extends javax.swing.JPanel {
     public void sendEmail(String emailAdd, String date) {
             String to = emailAdd;
             boolean sessionDebug=false;
-            String from = "abhiwase1995@gmail.com";
+            String from = "klkeshav08@gmail.com";
             String host = "smtp.gmail.com";
-            String user = "abhiwase1995@gmail.com";
-            String pass = "";
-            
+            String user = "klkeshav08@gmail.com";
+            String pass = "Alpha_123";
            
             Properties properties = System.getProperties();  
             properties.setProperty("mail.smtp.host", host);
@@ -299,7 +298,7 @@ public class HospitalWorkAreaJPanel extends javax.swing.JPanel {
             message.setRecipient(Message.RecipientType.TO,new InternetAddress(to));  
             InternetAddress address;
             address = new InternetAddress(to);
-            message.setSubject("New Rquest");
+            message.setSubject("CDC System Alert - New Sales Request");
             
             
             BodyPart messageBodyPart = new MimeBodyPart();

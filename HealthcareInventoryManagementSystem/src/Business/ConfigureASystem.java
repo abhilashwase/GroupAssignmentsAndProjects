@@ -25,11 +25,11 @@ public class ConfigureASystem {
         //create user account
         
         
-        Employee employee = system.getEmployeeDirectory().createEmployee("abhi@gmail.com");
+        Employee employee = system.getEmployeeDirectory().createEmployee("cdcadmin@gmail.com");
         String salt = PasswordUtils.getSalt(30);
         String mySecurePassword = PasswordUtils.generateSecurePassword("sysadmin", salt);
         
-        UserAccount ua = system.getUserAccountDirectory().createUserAccount("abhi@gmail.com", mySecurePassword, employee, new SystemAdminRole(),salt);
+        UserAccount ua = system.getUserAccountDirectory().createUserAccount("cdcadmin@gmail.com", mySecurePassword, employee, new SystemAdminRole(),salt);
         
         return system;
     }
